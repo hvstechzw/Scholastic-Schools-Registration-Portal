@@ -11,14 +11,13 @@
         :root {
             --primary-dark: #1a1a1a;
             --primary-light: #ffffff;
-            --secondary-dark: #2d2d2d;
-            --secondary-light: #f5f5f5;
-            --accent: #404040;
-            --border-light: #e0e0e0;
-            --border-dark: #4a4a4a;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --text-light: #999999;
+            --secondary-light: #f8f9fa;
+            --accent: #6c757d;
+            --border-light: #dee2e6;
+            --border-dark: #495057;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --text-light: #adb5bd;
             --shadow-light: rgba(0, 0, 0, 0.08);
             --shadow-medium: rgba(0, 0, 0, 0.12);
             --shadow-dark: rgba(0, 0, 0, 0.2);
@@ -26,18 +25,19 @@
         
         body {
             font-family: 'Segoe UI', 'Roboto', sans-serif;
-            background-color: var(--secondary-light);
+            background-color: var(--primary-light);
             color: var(--text-primary);
             line-height: 1.6;
         }
         
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
-            color: var(--primary-light);
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: var(--text-primary);
             padding: 3rem 0 2rem;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--border-light);
         }
         
         .header::before {
@@ -47,7 +47,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23404040' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%236c757d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
             opacity: 0.3;
         }
         
@@ -66,27 +66,28 @@
             align-items: center;
             justify-content: center;
             margin-right: 20px;
-            box-shadow: 0 4px 12px var(--shadow-dark);
+            box-shadow: 0 4px 12px var(--shadow-medium);
+            border: 1px solid var(--border-light);
         }
         
         .logo-icon i {
             font-size: 2.5rem;
-            color: var(--primary-dark);
+            color: var(--text-primary);
         }
         
         .header h1 {
             font-weight: 700;
             margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px var(--shadow-dark);
+            color: var(--text-primary);
         }
         
         .header .lead {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-secondary);
             font-weight: 300;
         }
         
         .section-title {
-            color: var(--primary-dark);
+            color: var(--text-primary);
             border-bottom: 2px solid var(--accent);
             padding-bottom: 12px;
             margin-bottom: 30px;
@@ -112,14 +113,14 @@
         
         .form-label {
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--text-primary);
             margin-bottom: 8px;
             font-size: 0.95rem;
         }
         
         .required::after {
             content: " *";
-            color: #cc0000;
+            color: #dc3545;
         }
         
         .form-control, .form-select {
@@ -133,7 +134,7 @@
         
         .form-control:focus, .form-select:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 0.2rem rgba(64, 64, 64, 0.15);
+            box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.15);
         }
         
         /* File Upload Styling */
@@ -154,7 +155,7 @@
         
         .upload-area.drag-over {
             border-color: var(--accent);
-            background-color: rgba(64, 64, 64, 0.05);
+            background-color: rgba(108, 117, 125, 0.05);
         }
         
         .upload-icon {
@@ -210,7 +211,7 @@
         }
         
         .remove-file:hover {
-            color: var(--primary-dark);
+            color: var(--text-primary);
         }
         
         .gallery-preview {
@@ -263,7 +264,7 @@
         
         .upload-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--primary-dark));
+            background: linear-gradient(90deg, var(--accent), var(--text-secondary));
             width: 0%;
             transition: width 0.3s;
         }
@@ -278,7 +279,7 @@
         }
         
         .requirements-box h6 {
-            color: var(--primary-dark);
+            color: var(--text-primary);
             margin-bottom: 10px;
         }
         
@@ -295,7 +296,7 @@
         
         /* Buttons */
         .btn-primary {
-            background: linear-gradient(to right, var(--secondary-dark), var(--primary-dark));
+            background: linear-gradient(to right, #6c757d, #495057);
             border: none;
             padding: 14px 32px;
             border-radius: 6px;
@@ -306,14 +307,14 @@
         }
         
         .btn-primary:hover {
-            background: linear-gradient(to right, var(--primary-dark), var(--secondary-dark));
+            background: linear-gradient(to right, #495057, #6c757d);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-dark);
             color: var(--primary-light);
         }
         
         .btn-success {
-            background: linear-gradient(to right, #4a4a4a, #333333);
+            background: linear-gradient(to right, #6c757d, #495057);
             border: none;
             padding: 14px 32px;
             border-radius: 6px;
@@ -322,7 +323,7 @@
         }
         
         .btn-success:hover {
-            background: linear-gradient(to right, #333333, #4a4a4a);
+            background: linear-gradient(to right, #495057, #6c757d);
             color: var(--primary-light);
         }
         
@@ -338,7 +339,7 @@
         
         /* Footer */
         .footer {
-            background: var(--primary-dark);
+            background: #343a40;
             color: var(--primary-light);
             padding: 50px 0 25px;
             margin-top: 60px;
@@ -374,14 +375,14 @@
         
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--primary-dark));
+            background: linear-gradient(90deg, var(--accent), var(--text-secondary));
             width: 0%;
             transition: width 0.3s;
         }
         
         /* Section Counters */
         .counter-badge {
-            background: var(--primary-dark);
+            background: var(--text-primary);
             color: var(--primary-light);
             border-radius: 50%;
             width: 36px;
@@ -400,7 +401,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--primary-dark);
+            background: #495057;
             color: var(--primary-light);
             border: none;
             border-radius: 50px;
@@ -412,7 +413,7 @@
         }
         
         .admin-btn:hover {
-            background: var(--secondary-dark);
+            background: #6c757d;
             transform: translateY(-3px);
             box-shadow: 0 8px 25px var(--shadow-dark);
         }
@@ -457,19 +458,52 @@
         /* Dark mode support */
         @media (prefers-color-scheme: dark) {
             :root {
-                --primary-dark: #ffffff;
-                --primary-light: #1a1a1a;
-                --secondary-dark: #2d2d2d;
-                --secondary-light: #252525;
-                --accent: #666666;
-                --border-light: #404040;
-                --border-dark: #666666;
-                --text-primary: #ffffff;
-                --text-secondary: #cccccc;
-                --text-light: #999999;
+                --primary-light: #212529;
+                --secondary-light: #343a40;
+                --accent: #adb5bd;
+                --border-light: #495057;
+                --border-dark: #6c757d;
+                --text-primary: #f8f9fa;
+                --text-secondary: #ced4da;
+                --text-light: #6c757d;
                 --shadow-light: rgba(0, 0, 0, 0.3);
                 --shadow-medium: rgba(0, 0, 0, 0.4);
                 --shadow-dark: rgba(0, 0, 0, 0.5);
+            }
+            
+            body {
+                background-color: var(--primary-light);
+            }
+            
+            .header {
+                background: linear-gradient(135deg, #343a40, #495057);
+                color: var(--text-primary);
+            }
+            
+            .header .lead {
+                color: rgba(255, 255, 255, 0.8);
+            }
+            
+            .logo-icon {
+                background: #495057;
+            }
+            
+            .form-control, .form-select {
+                background-color: #343a40;
+                color: var(--text-primary);
+                border-color: #495057;
+            }
+            
+            .upload-area {
+                background-color: #343a40;
+            }
+            
+            .file-preview {
+                background: #343a40;
+            }
+            
+            .requirements-box {
+                background: #343a40;
             }
         }
     </style>
@@ -1264,7 +1298,7 @@
                 </div>
                 <div class="modal-body text-center p-5">
                     <div class="mb-4">
-                        <div class="bg-dark bg-opacity-10 rounded-circle d-inline-flex p-4">
+                        <div class="bg-light rounded-circle d-inline-flex p-4">
                             <i class="fas fa-check-circle fa-4x text-dark"></i>
                         </div>
                     </div>
@@ -1440,11 +1474,11 @@
                 
                 // Change color based on progress
                 if (progress < 30) {
-                    progressBar.style.background = 'linear-gradient(90deg, #666666, #333333)';
+                    progressBar.style.background = 'linear-gradient(90deg, #adb5bd, #6c757d)';
                 } else if (progress < 70) {
-                    progressBar.style.background = 'linear-gradient(90deg, #999999, #666666)';
+                    progressBar.style.background = 'linear-gradient(90deg, #6c757d, #495057)';
                 } else {
-                    progressBar.style.background = 'linear-gradient(90deg, #404040, #1a1a1a)';
+                    progressBar.style.background = 'linear-gradient(90deg, #495057, #343a40)';
                 }
             }
             
@@ -1550,7 +1584,7 @@
                         duration: 4000,
                         gravity: "bottom",
                         position: "right",
-                        backgroundColor: "#cc0000",
+                        backgroundColor: "#dc3545",
                         className: "toast-error"
                     }).showToast();
                     return;
@@ -1571,7 +1605,7 @@
                             duration: 3000,
                             gravity: "bottom",
                             position: "right",
-                            backgroundColor: "#666666",
+                            backgroundColor: "#6c757d",
                             className: "toast-dark"
                         }).showToast();
                         break;
@@ -1656,7 +1690,7 @@
                         duration: 3000,
                         gravity: "bottom",
                         position: "right",
-                        backgroundColor: "#4a4a4a",
+                        backgroundColor: "#6c757d",
                         className: "toast-dark"
                     }).showToast();
                 };
@@ -1896,7 +1930,7 @@
                     duration: 3000,
                     gravity: "bottom",
                     position: "right",
-                    backgroundColor: "#4a4a4a",
+                    backgroundColor: "#6c757d",
                     className: "toast-dark"
                 }).showToast();
             } catch (e) {
@@ -1905,7 +1939,7 @@
                     duration: 3000,
                     gravity: "bottom",
                     position: "right",
-                    backgroundColor: "#666666",
+                    backgroundColor: "#6c757d",
                     className: "toast-dark"
                 }).showToast();
                 localStorage.setItem(FORM_DATA_KEY, JSON.stringify(formData));
@@ -1934,7 +1968,7 @@
                         duration: 3000,
                         gravity: "bottom",
                         position: "right",
-                        backgroundColor: "#666666",
+                        backgroundColor: "#6c757d",
                         className: "toast-dark"
                     }).showToast();
                 } catch (e) {
@@ -1963,7 +1997,7 @@
                     duration: 3000,
                     gravity: "bottom",
                     position: "right",
-                    backgroundColor: "#cc0000",
+                    backgroundColor: "#dc3545",
                     className: "toast-error"
                 }).showToast();
                 return;
@@ -2304,7 +2338,7 @@
                     duration: 2000,
                     gravity: "bottom",
                     position: "right",
-                    backgroundColor: "#4a4a4a",
+                    backgroundColor: "#6c757d",
                     className: "toast-dark"
                 }).showToast();
                 
@@ -2343,7 +2377,7 @@
                     duration: 3000,
                     gravity: "bottom",
                     position: "right",
-                    backgroundColor: "#1a1a1a",
+                    backgroundColor: "#495057",
                     className: "toast-dark"
                 }).showToast();
                 
@@ -2385,7 +2419,7 @@
                 duration: 3000,
                 gravity: "bottom",
                 position: "right",
-                backgroundColor: "#666666",
+                backgroundColor: "#6c757d",
                 className: "toast-dark"
             }).showToast();
         }
@@ -2397,7 +2431,7 @@
                     duration: 3000,
                     gravity: "bottom",
                     position: "right",
-                    backgroundColor: "#666666",
+                    backgroundColor: "#6c757d",
                     className: "toast-dark"
                 }).showToast();
                 return;
@@ -2441,7 +2475,7 @@
                 duration: 3000,
                 gravity: "bottom",
                 position: "right",
-                backgroundColor: "#4a4a4a",
+                backgroundColor: "#6c757d",
                 className: "toast-dark"
             }).showToast();
         }
@@ -2459,11 +2493,11 @@
             
             // PDF content with grayscale styling
             doc.setFontSize(20);
-            doc.setTextColor(26, 26, 26); // Dark gray
+            doc.setTextColor(33, 37, 41); // Dark gray
             doc.text('Scholastic Services Registration', 20, 20);
             
             doc.setFontSize(12);
-            doc.setTextColor(64, 64, 64); // Medium gray
+            doc.setTextColor(108, 117, 125); // Medium gray
             doc.text(`School Name: ${formData.schoolName || 'N/A'}`, 20, 40);
             doc.text(`School ID: ${formData.schoolId || 'Pending'}`, 20, 50);
             doc.text(`Registration Date: ${new Date().toLocaleDateString()}`, 20, 60);
@@ -2483,7 +2517,7 @@
                 duration: 3000,
                 gravity: "bottom",
                 position: "right",
-                backgroundColor: "#4a4a4a",
+                backgroundColor: "#6c757d",
                 className: "toast-dark"
             }).showToast();
         }
@@ -2505,7 +2539,7 @@
                 duration: 3000,
                 gravity: "bottom",
                 position: "right",
-                backgroundColor: "#666666",
+                backgroundColor: "#6c757d",
                 className: "toast-dark"
             }).showToast();
         }
@@ -2519,7 +2553,7 @@
                     duration: 3000,
                     gravity: "bottom",
                     position: "right",
-                    backgroundColor: "#666666",
+                    backgroundColor: "#6c757d",
                     className: "toast-dark"
                 }).showToast();
                 return;
@@ -2568,7 +2602,7 @@
                 duration: 3000,
                 gravity: "bottom",
                 position: "right",
-                backgroundColor: "#1a1a1a",
+                backgroundColor: "#495057",
                 className: "toast-dark"
             }).showToast();
         }
