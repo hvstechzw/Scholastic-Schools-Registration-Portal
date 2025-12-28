@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholastic Services Registration Portal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-light: #ffffff;
+            --secondary-dark: #2d2d2d;
+            --secondary-light: #f5f5f5;
+            --accent: #404040;
+            --border-light: #e0e0e0;
+            --border-dark: #4a4a4a;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.12);
+            --shadow-dark: rgba(0, 0, 0, 0.2);
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            background-color: var(--secondary-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
+            color: var(--primary-light);
+            padding: 3rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23404040' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 12px var(--shadow-dark);
+        }
+        
+        .logo-icon i {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px var(--shadow-dark);
+        }
+        
+        .header .lead {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Form Cards */
+        .form-card {
+            background: var(--primary-light);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-light);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .form-card:hover {
+            box-shadow: 0 6px 20px var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #cc0000;
+        }
+        
+        .form-control, .form-select {
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            padding: 12px 15px;
+            transition: all 0.3s;
+            background-color: var(--primary-light);
+            color: var(--text-primary);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 0.2rem rgba(64, 64, 64, 0.15);
+        }
+        
+        /* File Upload Styling */
+        .upload-area {
+            border: 2px dashed var(--border-light);
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: var(--secondary-light);
+        }
+        
+        .upload-area:hover {
+            border-color: var(--accent);
+            background-color: var(--primary-light);
+        }
+        
+        .upload-area.drag-over {
+            border-color: var(--accent);
+            background-color: rgba(64, 64, 64, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .file-preview-container {
+            margin-top: 20px;
+        }
+        
+        .file-preview {
+            background: var(--secondary-light);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-light);
+        }
+        
+        .file-preview-image {
+            max-width: 200px;
+            max-height: 150px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-light);
+        }
+        
+        .file-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            word-break: break-all;
+        }
+        
+        .file-size {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .remove-file {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        .remove-file:hover {
+            color: var(--primary-dark);
+        }
+        
+        .gallery-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            width: 120px;
+            height: 90px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .remove-gallery-item {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        /* Progress Bar */
+        .upload-progress {
+            height: 6px;
+            background-color: var(--border-light);
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .upload-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--primary-dark));
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* Image Requirements */
+        .requirements-box {
+            background: var(--secondary-light);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid var(--border-light);
+        }
+        
+        .requirements-box h6 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+        
+        .requirements-box ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .requirements-box li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(to right, var(--secondary-dark), var(--primary-dark));
+            border: none;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--primary-light);
+            box-shadow: 0 4px 10px var(--shadow-medium);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--secondary-dark));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px var(--shadow-dark);
+            color: var(--primary-light);
+        }
+        
+        .btn-success {
+            background: linear-gradient(to right, #4a4a4a, #333333);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(to right, #333333, #4a4a4a);
+            color: var(--primary-light);
+        }
+        
+        .btn-outline-secondary {
+            border: 1px solid var(--border-dark);
+            color: var(--text-primary);
+        }
+        
+        .btn-outline-secondary:hover {
+            background-color: var(--secondary-light);
+            border-color: var(--accent);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            padding: 50px 0 25px;
+            margin-top: 60px;
+        }
+        
+        .footer h5 {
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--border-light);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--primary-dark));
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* Section Counters */
+        .counter-badge {
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 8px var(--shadow-medium);
+        }
+        
+        /* Admin Button */
+        .admin-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            box-shadow: 0 6px 20px var(--shadow-dark);
+            z-index: 100;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .admin-btn:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow-dark);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 25px 20px;
+            }
+            
+            .header {
+                padding: 2rem 0 1.5rem;
+            }
+            
+            .logo-icon {
+                width: 60px;
+                height: 60px;
+                margin-right: 15px;
+            }
+            
+            .logo-icon i {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .admin-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .gallery-item {
+                width: 100px;
+                height: 75px;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-dark: #ffffff;
+                --primary-light: #1a1a1a;
+                --secondary-dark: #2d2d2d;
+                --secondary-light: #252525;
+                --accent: #666666;
+                --border-light: #404040;
+                --border-dark: #666666;
+                --text-primary: #ffffff;
+                --text-secondary: #cccccc;
+                --text-light: #999999;
+                --shadow-light: rgba(0, 0, 0, 0.3);
+                --shadow-medium: rgba(0, 0, 0, 0.4);
+                --shadow-dark: rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="formProgress"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-10">
+                    <div class="logo-container">
+                        <div class="logo-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div>
+                            <h1>Scholastic Services Registration Portal</h1>
+                            <p class="lead">Professional School Management System Registration</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 text-lg-end mt-3 mt-lg-0">
+                    <div class="bg-white bg-opacity-10 rounded-pill px-3 py-2 d-inline-block">
+                        <i class="fas fa-shield-alt me-2"></i>Secure Portal
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- Registration Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-11">
+                <div class="text-center mb-5">
+                    <h2 class="section-title d-inline-block">School Registration Application</h2>
+                    <p class="text-muted">Complete all sections below to register for the Scholastic Services School Management System.</p>
+                </div>
+                
+                <form id="schoolRegistrationForm" novalidate>
+                    <!-- Section 1: Basic Information -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">1</span>
+                            <h3 class="mb-0">Basic School Information</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Official School Name</label>
+                                <input type="text" class="form-control" id="schoolName" required>
+                                <div class="form-text">Enter the full official name of your institution</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Short Name / Abbreviation</label>
+                                <input type="text" class="form-control" id="shortName">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">School Type</label>
+                                <select class="form-select" id="schoolType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="Day">Day School</option>
+                                    <option value="Boarding">Boarding School</option>
+                                    <option value="Mixed">Day & Boarding</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Gender Focus</label>
+                                <select class="form-select" id="genderFocus" required>
+                                    <option value="">Select Focus</option>
+                                    <option value="Mixed">Mixed (Boys & Girls)</option>
+                                    <option value="Boys Only">Boys Only</option>
+                                    <option value="Girls Only">Girls Only</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Education Level</label>
+                                <select class="form-select" id="educationLevel" required>
+                                    <option value="">Select Level</option>
+                                    <option value="Pre-School">Pre-School</option>
+                                    <option value="Primary">Primary School</option>
+                                    <option value="Secondary">Secondary School</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Mixed">Mixed Levels</option>
+                                    <option value="College">College</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">School Category</label>
+                                <select class="form-select" id="schoolCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Public">Public School</option>
+                                    <option value="Private">Private School</option>
+                                    <option value="International">International School</option>
+                                    <option value="Religious">Religious School</option>
+                                    <option value="Special Needs">Special Needs School</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">School Motto</label>
+                                <input type="text" class="form-control" id="motto" placeholder="e.g., Excellence Through Education">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Year Established</label>
+                                <input type="number" class="form-control" id="establishmentYear" min="1900" max="2024">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label required">Registration/License Number</label>
+                                <input type="text" class="form-control" id="registrationNumber" required>
+                                <div class="form-text">Official government registration number</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: School Media Uploads -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">2</span>
+                            <h3 class="mb-0">School Media & Branding</h3>
+                        </div>
+                        
+                        <div class="requirements-box mb-4">
+                            <h6><i class="fas fa-info-circle me-2"></i>Upload Requirements</h6>
+                            <ul>
+                                <li>Logo: PNG, JPG, or SVG format (Max 5MB)</li>
+                                <li>Banner: JPG or PNG format (Max 10MB)</li>
+                                <li>Gallery Images: Up to 10 images (Max 5MB each)</li>
+                                <li>Documents: PDF format only (Max 10MB each)</li>
+                                <li>All images should be high quality and professional</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- School Logo Upload -->
+                        <div class="mb-4">
+                            <label class="form-label required">School Logo</label>
+                            <p class="text-muted mb-3">Upload your school's official logo. This will be used on your school portal and documents.</p>
+                            
+                            <div class="upload-area" id="logoUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <h5>Upload School Logo</h5>
+                                <p class="text-muted">Drag & drop your logo here or click to browse</p>
+                                <p class="text-muted small">Recommended: 300x300px, PNG format with transparent background</p>
+                                <input type="file" id="logoFile" accept=".png,.jpg,.jpeg,.svg,.gif" class="d-none">
+                            </div>
+                            
+                            <div class="file-preview-container" id="logoPreviewContainer"></div>
+                        </div>
+                        
+                        <!-- School Banner Upload -->
+                        <div class="mb-4">
+                            <label class="form-label">School Banner/Header Image</label>
+                            <p class="text-muted mb-3">Upload a banner image for your school portal header (optional).</p>
+                            
+                            <div class="upload-area" id="bannerUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <h5>Upload Banner Image</h5>
+                                <p class="text-muted">Drag & drop your banner here or click to browse</p>
+                                <p class="text-muted small">Recommended: 1200x400px, JPG or PNG format</p>
+                                <input type="file" id="bannerFile" accept=".png,.jpg,.jpeg,.gif" class="d-none">
+                            </div>
+                            
+                            <div class="file-preview-container" id="bannerPreviewContainer"></div>
+                        </div>
+                        
+                        <!-- School Gallery Upload -->
+                        <div class="mb-4">
+                            <label class="form-label">School Gallery Images</label>
+                            <p class="text-muted mb-3">Upload up to 10 images showcasing your school facilities, classrooms, events, etc.</p>
+                            
+                            <div class="upload-area" id="galleryUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-images"></i>
+                                </div>
+                                <h5>Upload Gallery Images</h5>
+                                <p class="text-muted">Drag & drop multiple images here or click to browse</p>
+                                <p class="text-muted small">You can upload up to 10 images (Max 5MB each)</p>
+                                <input type="file" id="galleryFiles" accept=".png,.jpg,.jpeg,.gif" multiple class="d-none">
+                            </div>
+                            
+                            <div class="gallery-preview" id="galleryPreview"></div>
+                            <div class="mt-2">
+                                <small class="text-muted" id="galleryCounter">0 images selected</small>
+                            </div>
+                        </div>
+                        
+                        <!-- School Documents Upload -->
+                        <div class="mb-4">
+                            <label class="form-label">School Documents</label>
+                            <p class="text-muted mb-3">Upload important school documents (registration certificates, licenses, etc.)</p>
+                            
+                            <div class="upload-area" id="documentsUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <h5>Upload Documents</h5>
+                                <p class="text-muted">Drag & drop PDF documents here or click to browse</p>
+                                <p class="text-muted small">PDF format only (Max 10MB each)</p>
+                                <input type="file" id="documentFiles" accept=".pdf" multiple class="d-none">
+                            </div>
+                            
+                            <div class="file-preview-container" id="documentsPreviewContainer"></div>
+                        </div>
+                        
+                        <!-- Virtual Tour Link -->
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Virtual Tour Link</label>
+                                <input type="url" class="form-control" id="virtualTourLink" placeholder="https://example.com/virtual-tour">
+                                <div class="form-text">Link to a virtual tour of your school (YouTube, Google Street View, etc.)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3: Location & Contact -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">3</span>
+                            <h3 class="mb-0">Location & Contact Information</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label required">Full Physical Address</label>
+                                <textarea class="form-control" id="address" rows="2" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">City/Town</label>
+                                <input type="text" class="form-control" id="city" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">Province/State</label>
+                                <select class="form-select" id="province" required>
+                                    <option value="">Select Province</option>
+                                    <option value="Bulawayo">Bulawayo</option>
+                                    <option value="Harare">Harare</option>
+                                    <option value="Manicaland">Manicaland</option>
+                                    <option value="Mashonaland Central">Mashonaland Central</option>
+                                    <option value="Mashonaland East">Mashonaland East</option>
+                                    <option value="Mashonaland West">Mashonaland West</option>
+                                    <option value="Masvingo">Masvingo</option>
+                                    <option value="Matabeleland North">Matabeleland North</option>
+                                    <option value="Matabeleland South">Matabeleland South</option>
+                                    <option value="Midlands">Midlands</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">District</label>
+                                <input type="text" class="form-control" id="district">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Primary Phone Number</label>
+                                <input type="tel" class="form-control" id="phonePrimary" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Secondary Phone Number</label>
+                                <input type="tel" class="form-control" id="phoneSecondary">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Primary Email Address</label>
+                                <input type="email" class="form-control" id="emailPrimary" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Secondary Email Address</label>
+                                <input type="email" class="form-control" id="emailSecondary">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">School Website</label>
+                                <input type="url" class="form-control" id="website" placeholder="https://">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Emergency Contact Number</label>
+                                <input type="tel" class="form-control" id="phoneEmergency">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Contact Person Name</label>
+                                <input type="text" class="form-control" id="contactPerson">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Contact Person Phone</label>
+                                <input type="tel" class="form-control" id="contactPhone">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 4: Administrative Details -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">4</span>
+                            <h3 class="mb-0">Administrative Details</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Principal/Head Teacher Name</label>
+                                <input type="text" class="form-control" id="principalName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Principal Phone</label>
+                                <input type="tel" class="form-control" id="principalPhone">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Principal Email</label>
+                                <input type="email" class="form-control" id="principalEmail">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Director/Proprietor Name</label>
+                                <input type="text" class="form-control" id="directorName">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Director Phone</label>
+                                <input type="tel" class="form-control" id="directorPhone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Director Email</label>
+                                <input type="email" class="form-control" id="directorEmail">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Board Chairperson Name</label>
+                                <input type="text" class="form-control" id="boardChairName">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Board Chairperson Phone</label>
+                                <input type="tel" class="form-control" id="boardChairPhone">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 5: Academic Information -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">5</span>
+                            <h3 class="mb-0">Academic Information</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Curriculum</label>
+                                <select class="form-select" id="curriculum" required>
+                                    <option value="">Select Curriculum</option>
+                                    <option value="Heritage-Based Education">Heritage-Based Education</option>
+                                    <option value="Competence-Based Learning">Competence-Based Learning</option>
+                                    <option value="STEM Bias">STEM Bias</option>
+                                    <option value="British">British Curriculum</option>
+                                    <option value="American">American Curriculum</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Examination Board</label>
+                                <input type="text" class="form-control" id="examBoard">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">Total Students</label>
+                                <input type="number" class="form-control" id="totalStudents" min="0" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">Total Teachers</label>
+                                <input type="number" class="form-control" id="totalTeachers" min="0" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Total Staff (Non-teaching)</label>
+                                <input type="number" class="form-control" id="totalStaff" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Student Capacity</label>
+                                <input type="number" class="form-control" id="studentCapacity" min="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Average Class Size</label>
+                                <input type="number" class="form-control" id="averageClassSize" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 6: Infrastructure & Facilities -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">6</span>
+                            <h3 class="mb-0">Infrastructure & Facilities</h3>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Total Classrooms</label>
+                                <input type="number" class="form-control" id="totalClassrooms" min="0">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Science Laboratories</label>
+                                <input type="number" class="form-control" id="scienceLabs" min="0">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Computer Labs</label>
+                                <input type="number" class="form-control" id="computerLabs" min="0">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Library Rooms</label>
+                                <input type="number" class="form-control" id="libraryRooms" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Boarding Capacity</label>
+                                <input type="number" class="form-control" id="boardingCapacity" min="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Day Scholars Capacity</label>
+                                <input type="number" class="form-control" id="dayScholarsCapacity" min="0">
+                            </div>
+                        </div>
+                        
+                        <h5 class="mb-3">Available Facilities (Check all that apply):</h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasLibrary" value="Library">
+                                    <label class="form-check-label" for="hasLibrary">Library</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasScienceLab" value="Science Lab">
+                                    <label class="form-check-label" for="hasScienceLab">Science Laboratory</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasComputerLab" value="Computer Lab">
+                                    <label class="form-check-label" for="hasComputerLab">Computer Laboratory</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasPlayground" value="Playground">
+                                    <label class="form-check-label" for="hasPlayground">Playground</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasSportsField" value="Sports Field">
+                                    <label class="form-check-label" for="hasSportsField">Sports Field</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasSwimmingPool" value="Swimming Pool">
+                                    <label class="form-check-label" for="hasSwimmingPool">Swimming Pool</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasAuditorium" value="Auditorium">
+                                    <label class="form-check-label" for="hasAuditorium">Auditorium</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasCafeteria" value="Cafeteria">
+                                    <label class="form-check-label" for="hasCafeteria">Cafeteria</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasHealthClinic" value="Health Clinic">
+                                    <label class="form-check-label" for="hasHealthClinic">Health Clinic</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasWifi" value="Wi-Fi">
+                                    <label class="form-check-label" for="hasWifi">Wi-Fi Internet</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input facility" type="checkbox" id="hasSmartClasses" value="Smart Classes">
+                                    <label class="form-check-label" for="hasSmartClasses">Smart Classrooms</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="hostelFacilities" value="Hostel">
+                                    <label class="form-check-label" for="hostelFacilities">Hostel Facilities</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="transportServices" value="Transport">
+                                    <label class="form-check-label" for="transportServices">Transport Services</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Sports Facilities Description</label>
+                                <textarea class="form-control" id="sportsFacilities" rows="2" placeholder="e.g., Football field, basketball court, tennis court..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 7: Financial Information -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">7</span>
+                            <h3 class="mb-0">Financial Information</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Fee Range (Per Term)</label>
+                                <input type="text" class="form-control" id="feeRange" placeholder="e.g., $500 - $1,200">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Payment Plans Available</label>
+                                <select class="form-select" id="paymentPlan">
+                                    <option value="">Select Payment Plan</option>
+                                    <option value="Full Payment">Full Payment</option>
+                                    <option value="Installments">Installments</option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Termly">Termly</option>
+                                    <option value="Custom">Custom Plan</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="scholarshipsAvailable">
+                                    <label class="form-check-label" for="scholarshipsAvailable">
+                                        Scholarships/Bursaries Available
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Scholarship Details (if applicable)</label>
+                                <textarea class="form-control" id="scholarshipDetails" rows="3" placeholder="Describe scholarship programs, eligibility criteria, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 8: Mission, Vision & Description -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">8</span>
+                            <h3 class="mb-0">Mission, Vision & School Description</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">School Mission Statement</label>
+                                <textarea class="form-control" id="mission" rows="3" placeholder="What is the core purpose of your school?"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">School Vision Statement</label>
+                                <textarea class="form-control" id="vision" rows="3" placeholder="What is your school's future aspiration?"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">School Description</label>
+                                <textarea class="form-control" id="description" rows="4" placeholder="Describe your school's history, achievements, unique features, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 9: Terms & Conditions -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">9</span>
+                            <h3 class="mb-0">Terms & Conditions</h3>
+                        </div>
+                        
+                        <div class="terms-box mb-4" style="max-height: 300px; overflow-y: auto; padding: 25px; background: var(--secondary-light); border-radius: 8px; border: 1px solid var(--border-light);">
+                            <h5>Scholastic Services School Management System - Terms and Conditions</h5>
+                            <p><strong>Effective Date:</strong> January 1, 2024</p>
+                            
+                            <h6>1. Acceptance of Terms</h6>
+                            <p>By registering for the Scholastic School Management System, you agree to be bound by these Terms and Conditions. If you do not agree to all terms, do not use the service.</p>
+                            
+                            <h6>2. Service Description</h6>
+                            <p>The Scholastic School Management System provides schools with comprehensive management tools including student records, teacher management, fee collection, reporting, and communication features.</p>
+                            
+                            <h6>3. Registration Requirements</h6>
+                            <p>To register, you must provide accurate, current, and complete information about your school. You are responsible for maintaining the confidentiality of your account and password.</p>
+                            
+                            <h6>4. Free Trial Period</h6>
+                            <p>All new schools receive a 30-day free trial with full access to the system. After the trial period, you must subscribe to a paid package to continue using the service.</p>
+                            
+                            <h6>5. Data Privacy and Security</h6>
+                            <p>We implement industry-standard security measures to protect your data. We will not share your school's data with third parties without your consent, except as required by law.</p>
+                            
+                            <h6>6. School Responsibilities</h6>
+                            <p>You are responsible for:</p>
+                            <ul>
+                                <li>Accurate data entry and maintenance</li>
+                                <li>Complying with data protection laws</li>
+                                <li>Obtaining necessary consents for student/parent data</li>
+                                <li>Secure handling of login credentials</li>
+                            </ul>
+                            
+                            <h6>7. Payment Terms</h6>
+                            <p>Subscription fees are billed monthly or annually in advance. Payments are non-refundable except as required by law.</p>
+                            
+                            <h6>8. Intellectual Property</h6>
+                            <p>The Scholastic system and all related software, documentation, and content are the property of Scholastic Services and High Voltage Software Technologies.</p>
+                            
+                            <h6>9. Limitation of Liability</h6>
+                            <p>Our liability for any claims related to the service is limited to the amount paid for the service during the 12 months preceding the claim.</p>
+                            
+                            <h6>10. Termination</h6>
+                            <p>We may terminate or suspend access to the service immediately if you violate these terms.</p>
+                            
+                            <h6>11. Governing Law</h6>
+                            <p>These terms are governed by the laws of Zimbabwe. Any disputes shall be resolved in the courts of Zimbabwe.</p>
+                            
+                            <h6>12. Changes to Terms</h6>
+                            <p>We reserve the right to modify these terms at any time. Continued use of the service after changes constitutes acceptance of the new terms.</p>
+                            
+                            <h6>13. Contact Information</h6>
+                            <p>For questions about these terms, contact:<br>
+                            Scholastic Services | High Voltage Software Technologies<br>
+                            Hwange, Zimbabwe<br>
+                            Email: support@scholastic.ac.ke<br>
+                            Phone: +263 000 000 000</p>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                    <label class="form-check-label required" for="agreeTerms">
+                                        I have read, understood, and agree to the Terms and Conditions above
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree to the terms and conditions to proceed.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="marketingConsent">
+                                    <label class="form-check-label" for="marketingConsent">
+                                        I agree to receive occasional updates, tips, and promotional materials about the Scholastic School Management System
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Section -->
+                    <div class="form-card text-center">
+                        <div class="d-flex justify-content-center mb-4">
+                            <div class="me-3">
+                                <button type="button" class="btn btn-outline-secondary" id="saveDraftBtn">
+                                    <i class="fas fa-save me-2"></i>Save Draft
+                                </button>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg px-5" id="submitBtn">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Registration
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-muted">
+                            <i class="fas fa-info-circle me-2"></i>
+                            After submission, you will receive a confirmation email with your school ID and login credentials.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-white bg-opacity-10 rounded-circle p-2 me-3">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h5 class="mb-0">Scholastic Services</h5>
+                    </div>
+                    <p class="opacity-75">Professional school management solutions for educational institutions in Zimbabwe and beyond. Empowering education through technology.</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white opacity-75 me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75 me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75 me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Contact Information</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Hwange, Zimbabwe</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>+263 000 000 000</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>support@scholastic.ac.ke</li>
+                        <li class="mb-2"><i class="fas fa-globe me-2"></i>https://scholastic.ac.ke</li>
+                        <li><i class="fas fa-clock me-2"></i>Mon-Fri: 8:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">About Scholastic Services</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">System Features</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Pricing Plans</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Technical Support</a></li>
+                        <li><a href="#" class="text-white text-decoration-none opacity-75">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="opacity-25">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="mb-0 opacity-75">&copy; 2024 Scholastic Services | High Voltage Software Technologies. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5">
+                    <div class="mb-4">
+                        <div class="bg-dark bg-opacity-10 rounded-circle d-inline-flex p-4">
+                            <i class="fas fa-check-circle fa-4x text-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="mb-3">Registration Submitted Successfully!</h3>
+                    <p class="text-muted mb-4">Your school registration has been received. You will receive a confirmation email shortly with your school ID and login credentials.</p>
+                    
+                    <div class="alert alert-info text-start">
+                        <h6><i class="fas fa-info-circle me-2"></i>Uploaded Files:</h6>
+                        <div id="uploadedFilesList"></div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-primary me-2" id="downloadPDFBtn">
+                            <i class="fas fa-download me-2"></i>Download PDF
+                        </button>
+                        <button type="button" class="btn btn-outline-dark" id="downloadJSONBtn">
+                            <i class="fas fa-file-code me-2"></i>Download JSON
+                        </button>
+                        <button type="button" class="btn btn-outline-dark mt-2" id="downloadMediaBtn">
+                            <i class="fas fa-file-archive me-2"></i>Download Media Files
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Data Modal -->
+    <div class="modal fade" id="adminDataModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">School Registration Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Admin Access Only:</strong> All school registrations with uploaded media files.
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="registrationsTable">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>School Name</th>
+                                    <th>Date</th>
+                                    <th>Logo</th>
+                                    <th>Files</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-4 text-end">
+                        <button type="button" class="btn btn-outline-secondary me-2" id="clearAllBtn">
+                            <i class="fas fa-trash me-2"></i>Clear All Data
+                        </button>
+                        <button type="button" class="btn btn-dark" id="exportAllBtn">
+                            <i class="fas fa-file-excel me-2"></i>Export All as CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Access Button -->
+    <button type="button" class="admin-btn" id="adminAccessBtn" data-bs-toggle="modal" data-bs-target="#adminDataModal">
+        <i class="fas fa-user-shield me-2"></i>Admin Access
+        <span class="badge bg-danger ms-2" id="notificationBadge" style="display: none;">0</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        // Global variables
+        const FORM_DATA_KEY = 'scholastic_registration_draft';
+        const REGISTRATIONS_KEY = 'scholastic_registrations';
+        const ADMIN_NOTIFICATIONS_KEY = 'scholastic_notifications';
+        const MEDIA_FILES_KEY = 'scholastic_media_files';
+        
+        // File storage
+        let uploadedFiles = {
+            logo: null,
+            banner: null,
+            gallery: [],
+            documents: []
+        };
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved draft if exists
+            loadDraft();
+            
+            // Setup form validation
+            setupFormValidation();
+            
+            // Setup form progress tracking
+            setupProgressTracking();
+            
+            // Setup file upload handlers
+            setupFileUploads();
+            
+            // Setup event listeners
+            document.getElementById('saveDraftBtn').addEventListener('click', saveDraft);
+            document.getElementById('schoolRegistrationForm').addEventListener('submit', submitForm);
+            document.getElementById('downloadPDFBtn').addEventListener('click', downloadPDF);
+            document.getElementById('downloadJSONBtn').addEventListener('click', downloadJSON);
+            document.getElementById('downloadMediaBtn').addEventListener('click', downloadMediaFiles);
+            document.getElementById('exportAllBtn').addEventListener('click', exportAllRegistrations);
+            document.getElementById('clearAllBtn').addEventListener('click', clearAllData);
+            
+            // Load registrations for admin
+            loadRegistrationsTable();
+            
+            // Check for new registrations
+            checkNewRegistrations();
+        });
+        
+        // ============================================
+        // FORM VALIDATION & PROGRESS TRACKING
+        // ============================================
+        
+        function setupFormValidation() {
+            const form = document.getElementById('schoolRegistrationForm');
+            
+            form.addEventListener('submit', function(event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                
+                form.classList.add('was-validated');
+            }, false);
+        }
+        
+        function setupProgressTracking() {
+            const form = document.getElementById('schoolRegistrationForm');
+            const progressBar = document.getElementById('formProgress');
+            const sections = form.querySelectorAll('.form-card');
+            const totalSections = sections.length;
+            
+            function updateProgress() {
+                let filledSections = 0;
+                
+                sections.forEach(section => {
+                    const inputs = section.querySelectorAll('input[required], select[required], textarea[required]');
+                    let sectionFilled = true;
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            sectionFilled = false;
+                        }
+                    });
+                    
+                    if (sectionFilled) filledSections++;
+                });
+                
+                const progress = (filledSections / totalSections) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                // Change color based on progress
+                if (progress < 30) {
+                    progressBar.style.background = 'linear-gradient(90deg, #666666, #333333)';
+                } else if (progress < 70) {
+                    progressBar.style.background = 'linear-gradient(90deg, #999999, #666666)';
+                } else {
+                    progressBar.style.background = 'linear-gradient(90deg, #404040, #1a1a1a)';
+                }
+            }
+            
+            // Update progress on any input change
+            form.addEventListener('input', updateProgress);
+            form.addEventListener('change', updateProgress);
+            
+            // Initial update
+            updateProgress();
+        }
+        
+        // ============================================
+        // FILE UPLOAD SYSTEM
+        // ============================================
+        
+        function setupFileUploads() {
+            // Logo upload
+            const logoUploadArea = document.getElementById('logoUploadArea');
+            const logoFileInput = document.getElementById('logoFile');
+            
+            logoUploadArea.addEventListener('click', () => logoFileInput.click());
+            logoFileInput.addEventListener('change', (e) => handleFileUpload(e, 'logo'));
+            
+            setupDragAndDrop(logoUploadArea, logoFileInput, 'logo');
+            
+            // Banner upload
+            const bannerUploadArea = document.getElementById('bannerUploadArea');
+            const bannerFileInput = document.getElementById('bannerFile');
+            
+            bannerUploadArea.addEventListener('click', () => bannerFileInput.click());
+            bannerFileInput.addEventListener('change', (e) => handleFileUpload(e, 'banner'));
+            
+            setupDragAndDrop(bannerUploadArea, bannerFileInput, 'banner');
+            
+            // Gallery upload
+            const galleryUploadArea = document.getElementById('galleryUploadArea');
+            const galleryFileInput = document.getElementById('galleryFiles');
+            
+            galleryUploadArea.addEventListener('click', () => galleryFileInput.click());
+            galleryFileInput.addEventListener('change', (e) => handleFileUpload(e, 'gallery'));
+            
+            setupDragAndDrop(galleryUploadArea, galleryFileInput, 'gallery');
+            
+            // Documents upload
+            const documentsUploadArea = document.getElementById('documentsUploadArea');
+            const documentFileInput = document.getElementById('documentFiles');
+            
+            documentsUploadArea.addEventListener('click', () => documentFileInput.click());
+            documentFileInput.addEventListener('change', (e) => handleFileUpload(e, 'documents'));
+            
+            setupDragAndDrop(documentsUploadArea, documentFileInput, 'documents');
+        }
+        
+        function setupDragAndDrop(uploadArea, fileInput, type) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (type === 'gallery' || type === 'documents') {
+                    fileInput.files = files;
+                    handleFileUpload({ target: fileInput }, type);
+                } else {
+                    fileInput.files = files;
+                    handleFileUpload({ target: fileInput }, type);
+                }
+            }, false);
+        }
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        function highlight(e) {
+            e.currentTarget.classList.add('drag-over');
+        }
+        
+        function unhighlight(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+        
+        function handleFileUpload(event, type) {
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+            
+            // Validate files
+            for (let file of files) {
+                if (!validateFile(file, type)) {
+                    Toastify({
+                        text: `Invalid file: ${file.name}. Please check file requirements.`,
+                        duration: 4000,
+                        gravity: "bottom",
+                        position: "right",
+                        backgroundColor: "#cc0000",
+                        className: "toast-error"
+                    }).showToast();
+                    return;
+                }
+            }
+            
+            // Process files based on type
+            if (type === 'logo' || type === 'banner') {
+                // Single file upload
+                const file = files[0];
+                uploadFile(file, type);
+            } else if (type === 'gallery') {
+                // Multiple gallery images
+                for (let file of files) {
+                    if (uploadedFiles.gallery.length >= 10) {
+                        Toastify({
+                            text: "Maximum 10 gallery images allowed",
+                            duration: 3000,
+                            gravity: "bottom",
+                            position: "right",
+                            backgroundColor: "#666666",
+                            className: "toast-dark"
+                        }).showToast();
+                        break;
+                    }
+                    uploadFile(file, type);
+                }
+            } else if (type === 'documents') {
+                // Multiple documents
+                for (let file of files) {
+                    uploadFile(file, type);
+                }
+            }
+        }
+        
+        function validateFile(file, type) {
+            const maxSize = {
+                logo: 5 * 1024 * 1024, // 5MB
+                banner: 10 * 1024 * 1024, // 10MB
+                gallery: 5 * 1024 * 1024, // 5MB
+                documents: 10 * 1024 * 1024 // 10MB
+            };
+            
+            const allowedTypes = {
+                logo: ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml', 'image/gif'],
+                banner: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
+                gallery: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
+                documents: ['application/pdf']
+            };
+            
+            // Check file size
+            if (file.size > maxSize[type]) {
+                return false;
+            }
+            
+            // Check file type
+            if (!allowedTypes[type].includes(file.type)) {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function uploadFile(file, type) {
+            // Show upload progress
+            showUploadProgress(file, type);
+            
+            // Simulate upload delay
+            setTimeout(() => {
+                // Convert file to base64 for storage
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const fileData = {
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        data: e.target.result,
+                        uploaded: new Date().toISOString()
+                    };
+                    
+                    // Store file
+                    if (type === 'logo') {
+                        uploadedFiles.logo = fileData;
+                        displayFilePreview(fileData, 'logo');
+                    } else if (type === 'banner') {
+                        uploadedFiles.banner = fileData;
+                        displayFilePreview(fileData, 'banner');
+                    } else if (type === 'gallery') {
+                        uploadedFiles.gallery.push(fileData);
+                        displayGalleryPreview();
+                    } else if (type === 'documents') {
+                        uploadedFiles.documents.push(fileData);
+                        displayDocumentsPreview();
+                    }
+                    
+                    // Update counter for gallery
+                    if (type === 'gallery') {
+                        updateGalleryCounter();
+                    }
+                    
+                    Toastify({
+                        text: `${file.name} uploaded successfully`,
+                        duration: 3000,
+                        gravity: "bottom",
+                        position: "right",
+                        backgroundColor: "#4a4a4a",
+                        className: "toast-dark"
+                    }).showToast();
+                };
+                reader.readAsDataURL(file);
+            }, 1000);
+        }
+        
+        function showUploadProgress(file, type) {
+            const containerId = type === 'logo' ? 'logoPreviewContainer' : 
+                              type === 'banner' ? 'bannerPreviewContainer' : 
+                              type === 'gallery' ? 'galleryPreview' : 
+                              'documentsPreviewContainer';
+            
+            const container = document.getElementById(containerId);
+            const progressId = `progress-${type}-${Date.now()}`;
+            
+            const progressHTML = `
+                <div class="file-preview" id="${progressId}">
+                    <div class="file-info">
+                        <div>
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size">${formatFileSize(file.size)}</div>
+                        </div>
+                        <div>Uploading...</div>
+                    </div>
+                    <div class="upload-progress">
+                        <div class="upload-progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            `;
+            
+            if (type === 'logo' || type === 'banner') {
+                container.innerHTML = progressHTML;
+            } else {
+                container.insertAdjacentHTML('beforeend', progressHTML);
+            }
+            
+            // Animate progress bar
+            const progressBar = document.querySelector(`#${progressId} .upload-progress-bar`);
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    // Remove progress element after upload
+                    setTimeout(() => {
+                        const element = document.getElementById(progressId);
+                        if (element) element.remove();
+                    }, 500);
+                } else {
+                    width += 10;
+                    progressBar.style.width = width + '%';
+                }
+            }, 100);
+        }
+        
+        function displayFilePreview(fileData, type) {
+            const containerId = type === 'logo' ? 'logoPreviewContainer' : 'bannerPreviewContainer';
+            const container = document.getElementById(containerId);
+            
+            let previewHTML = '';
+            if (fileData.type.startsWith('image/')) {
+                previewHTML = `
+                    <div class="file-preview">
+                        <img src="${fileData.data}" alt="${fileData.name}" class="file-preview-image">
+                        <div class="file-info">
+                            <div>
+                                <div class="file-name">${fileData.name}</div>
+                                <div class="file-size">${formatFileSize(fileData.size)}</div>
+                            </div>
+                            <button type="button" class="remove-file" onclick="removeFile('${type}')">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                previewHTML = `
+                    <div class="file-preview">
+                        <div class="file-info">
+                            <div>
+                                <div class="file-name">${fileData.name}</div>
+                                <div class="file-size">${formatFileSize(fileData.size)}</div>
+                            </div>
+                            <button type="button" class="remove-file" onclick="removeFile('${type}')">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = previewHTML;
+        }
+        
+        function displayGalleryPreview() {
+            const container = document.getElementById('galleryPreview');
+            container.innerHTML = '';
+            
+            uploadedFiles.gallery.forEach((file, index) => {
+                const itemHTML = `
+                    <div class="gallery-item">
+                        <img src="${file.data}" alt="${file.name}" class="gallery-image">
+                        <button type="button" class="remove-gallery-item" onclick="removeGalleryImage(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', itemHTML);
+            });
+            
+            updateGalleryCounter();
+        }
+        
+        function displayDocumentsPreview() {
+            const container = document.getElementById('documentsPreviewContainer');
+            container.innerHTML = '';
+            
+            uploadedFiles.documents.forEach((file, index) => {
+                const previewHTML = `
+                    <div class="file-preview">
+                        <div class="file-info">
+                            <div>
+                                <div class="file-name"><i class="fas fa-file-pdf me-2"></i>${file.name}</div>
+                                <div class="file-size">${formatFileSize(file.size)}</div>
+                            </div>
+                            <button type="button" class="remove-file" onclick="removeDocument(${index})">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', previewHTML);
+            });
+        }
+        
+        function updateGalleryCounter() {
+            const counter = document.getElementById('galleryCounter');
+            counter.textContent = `${uploadedFiles.gallery.length} images selected (Max 10)`;
+        }
+        
+        function removeFile(type) {
+            if (type === 'logo') {
+                uploadedFiles.logo = null;
+                document.getElementById('logoPreviewContainer').innerHTML = '';
+                document.getElementById('logoFile').value = '';
+            } else if (type === 'banner') {
+                uploadedFiles.banner = null;
+                document.getElementById('bannerPreviewContainer').innerHTML = '';
+                document.getElementById('bannerFile').value = '';
+            }
+        }
+        
+        function removeGalleryImage(index) {
+            uploadedFiles.gallery.splice(index, 1);
+            displayGalleryPreview();
+            document.getElementById('galleryFiles').value = '';
+        }
+        
+        function removeDocument(index) {
+            uploadedFiles.documents.splice(index, 1);
+            displayDocumentsPreview();
+            document.getElementById('documentFiles').value = '';
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // ============================================
+        // FORM DATA MANAGEMENT
+        // ============================================
+        
+        function getFormData() {
+            const formData = {};
+            const form = document.getElementById('schoolRegistrationForm');
+            
+            // Get all input values
+            form.querySelectorAll('input, select, textarea').forEach(input => {
+                if (input.type === 'checkbox') {
+                    formData[input.id] = input.checked;
+                } else if (input.type === 'radio') {
+                    if (input.checked) formData[input.name] = input.value;
+                } else {
+                    formData[input.id] = input.value;
+                }
+            });
+            
+            // Get checked facilities
+            const facilities = [];
+            document.querySelectorAll('.facility:checked').forEach(checkbox => {
+                facilities.push(checkbox.value);
+            });
+            formData.facilities = facilities;
+            
+            // Add timestamp
+            formData.timestamp = new Date().toISOString();
+            formData.submissionId = 'SCH-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            
+            return formData;
+        }
+        
+        function setFormData(formData) {
+            Object.keys(formData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    if (element.type === 'checkbox') {
+                        element.checked = formData[key];
+                    } else {
+                        element.value = formData[key] || '';
+                    }
+                }
+            });
+            
+            // Set facilities checkboxes
+            if (formData.facilities) {
+                document.querySelectorAll('.facility').forEach(checkbox => {
+                    checkbox.checked = formData.facilities.includes(checkbox.value);
+                });
+            }
+        }
+        
+        function saveDraft() {
+            const formData = getFormData();
+            // Store files in localStorage (limited by size)
+            try {
+                localStorage.setItem(FORM_DATA_KEY, JSON.stringify({
+                    formData: formData,
+                    uploadedFiles: uploadedFiles
+                }));
+                
+                Toastify({
+                    text: "Draft with files saved successfully!",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "right",
+                    backgroundColor: "#4a4a4a",
+                    className: "toast-dark"
+                }).showToast();
+            } catch (e) {
+                Toastify({
+                    text: "Draft saved (files not saved due to size limits)",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "right",
+                    backgroundColor: "#666666",
+                    className: "toast-dark"
+                }).showToast();
+                localStorage.setItem(FORM_DATA_KEY, JSON.stringify(formData));
+            }
+        }
+        
+        function loadDraft() {
+            const savedData = localStorage.getItem(FORM_DATA_KEY);
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    if (data.formData && data.uploadedFiles) {
+                        setFormData(data.formData);
+                        uploadedFiles = data.uploadedFiles;
+                        // Display uploaded files
+                        if (uploadedFiles.logo) displayFilePreview(uploadedFiles.logo, 'logo');
+                        if (uploadedFiles.banner) displayFilePreview(uploadedFiles.banner, 'banner');
+                        if (uploadedFiles.gallery.length > 0) displayGalleryPreview();
+                        if (uploadedFiles.documents.length > 0) displayDocumentsPreview();
+                    } else {
+                        setFormData(data);
+                    }
+                    
+                    Toastify({
+                        text: "Draft loaded from previous session",
+                        duration: 3000,
+                        gravity: "bottom",
+                        position: "right",
+                        backgroundColor: "#666666",
+                        className: "toast-dark"
+                    }).showToast();
+                } catch (e) {
+                    console.error('Error loading draft:', e);
+                }
+            }
+        }
+        
+        // ============================================
+        // FORM SUBMISSION
+        // ============================================
+        
+        async function submitForm(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('schoolRegistrationForm');
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+            
+            // Check if logo is uploaded (required)
+            if (!uploadedFiles.logo) {
+                Toastify({
+                    text: "Please upload a school logo",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "right",
+                    backgroundColor: "#cc0000",
+                    className: "toast-error"
+                }).showToast();
+                return;
+            }
+            
+            // Disable submit button
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+            submitBtn.disabled = true;
+            
+            // Get form data
+            const formData = getFormData();
+            
+            // Simulate upload delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Save registration to localStorage
+            saveRegistration(formData);
+            
+            // Create admin notification
+            createAdminNotification(formData);
+            
+            // Clear draft
+            localStorage.removeItem(FORM_DATA_KEY);
+            
+            // Show uploaded files in success modal
+            displayUploadedFilesInModal();
+            
+            // Show success modal
+            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+            
+            // Reset button
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Submit Registration';
+            submitBtn.disabled = false;
+            
+            // Reset form and files
+            form.reset();
+            form.classList.remove('was-validated');
+            uploadedFiles = { logo: null, banner: null, gallery: [], documents: [] };
+            document.getElementById('logoPreviewContainer').innerHTML = '';
+            document.getElementById('bannerPreviewContainer').innerHTML = '';
+            document.getElementById('galleryPreview').innerHTML = '';
+            document.getElementById('documentsPreviewContainer').innerHTML = '';
+            document.getElementById('galleryCounter').textContent = '0 images selected';
+            
+            // Update progress bar
+            document.getElementById('formProgress').style.width = '0%';
+            
+            // Refresh admin table
+            loadRegistrationsTable();
+        }
+        
+        function displayUploadedFilesInModal() {
+            const container = document.getElementById('uploadedFilesList');
+            let html = '<ul class="mb-0">';
+            
+            if (uploadedFiles.logo) {
+                html += `<li><i class="fas fa-image text-success me-2"></i>Logo: ${uploadedFiles.logo.name}</li>`;
+            }
+            
+            if (uploadedFiles.banner) {
+                html += `<li><i class="fas fa-image text-success me-2"></i>Banner: ${uploadedFiles.banner.name}</li>`;
+            }
+            
+            if (uploadedFiles.gallery.length > 0) {
+                html += `<li><i class="fas fa-images text-success me-2"></i>Gallery: ${uploadedFiles.gallery.length} images</li>`;
+            }
+            
+            if (uploadedFiles.documents.length > 0) {
+                html += `<li><i class="fas fa-file-pdf text-success me-2"></i>Documents: ${uploadedFiles.documents.length} files</li>`;
+            }
+            
+            html += '</ul>';
+            container.innerHTML = html;
+        }
+        
+        // ============================================
+        // DATA STORAGE & REGISTRATION MANAGEMENT
+        // ============================================
+        
+        function saveRegistration(formData) {
+            let registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
+            
+            // Generate school ID
+            const provinceCode = formData.province ? formData.province.substring(0, 3).toUpperCase() : 'SCH';
+            const year = new Date().getFullYear() % 100;
+            const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+            formData.schoolId = `${provinceCode}${year}${randomPart}`;
+            
+            // Add uploaded files
+            formData.uploadedFiles = {
+                logo: uploadedFiles.logo ? uploadedFiles.logo.name : null,
+                banner: uploadedFiles.banner ? uploadedFiles.banner.name : null,
+                galleryCount: uploadedFiles.gallery.length,
+                documentsCount: uploadedFiles.documents.length
+            };
+            
+            // Store full files separately
+            const registrationId = formData.schoolId;
+            localStorage.setItem(`${MEDIA_FILES_KEY}_${registrationId}`, JSON.stringify(uploadedFiles));
+            
+            // Add status and metadata
+            formData.status = 'pending';
+            formData.submissionDate = new Date().toISOString();
+            formData.reviewed = false;
+            
+            registrations.unshift(formData); // Add to beginning
+            localStorage.setItem(REGISTRATIONS_KEY, JSON.stringify(registrations));
+        }
+        
+        function createAdminNotification(formData) {
+            let notifications = JSON.parse(localStorage.getItem(ADMIN_NOTIFICATIONS_KEY)) || [];
+            
+            const notification = {
+                id: 'NOTIF-' + Date.now(),
+                type: 'new_registration',
+                title: 'New School Registration',
+                message: `${formData.schoolName} from ${formData.city}, ${formData.province} has registered.`,
+                timestamp: new Date().toISOString(),
+                read: false,
+                data: formData
+            };
+            
+            notifications.push(notification);
+            localStorage.setItem(ADMIN_NOTIFICATIONS_KEY, JSON.stringify(notifications));
+            
+            // Update admin button badge
+            updateAdminBadge();
+        }
+        
+        function updateAdminBadge() {
+            const notifications = JSON.parse(localStorage.getItem(ADMIN_NOTIFICATIONS_KEY)) || [];
+            const unreadCount = notifications.filter(n => !n.read).length;
+            
+            const badge = document.getElementById('notificationBadge');
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+        
+        function checkNewRegistrations() {
+            updateAdminBadge();
+            
+            // Check every 10 seconds for new registrations
+            setInterval(updateAdminBadge, 10000);
+        }
+        
+        // ============================================
+        // ADMIN PANEL FUNCTIONS
+        // ============================================
+        
+        function loadRegistrationsTable() {
+            const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
+            const tableBody = document.querySelector('#registrationsTable tbody');
+            tableBody.innerHTML = '';
+            
+            if (registrations.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-4 text-muted">
+                            <i class="fas fa-inbox fa-2x mb-3 d-block"></i>
+                            No registrations yet
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            registrations.forEach((reg, index) => {
+                const row = document.createElement('tr');
+                
+                // Format date
+                const date = new Date(reg.submissionDate || reg.timestamp);
+                const formattedDate = date.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                // Status badge
+                const statusClass = reg.reviewed ? 'bg-dark' : 'bg-secondary';
+                const statusText = reg.reviewed ? 'Reviewed' : 'New';
+                
+                // Get logo preview if available
+                let logoPreview = '-';
+                if (reg.uploadedFiles && reg.uploadedFiles.logo) {
+                    const mediaFiles = JSON.parse(localStorage.getItem(`${MEDIA_FILES_KEY}_${reg.schoolId}`) || '{}');
+                    if (mediaFiles.logo && mediaFiles.logo.data) {
+                        logoPreview = `<img src="${mediaFiles.logo.data}" alt="Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">`;
+                    }
+                }
+                
+                // Count files
+                const fileCount = (reg.uploadedFiles ? 
+                    (reg.uploadedFiles.logo ? 1 : 0) + 
+                    (reg.uploadedFiles.banner ? 1 : 0) + 
+                    (reg.uploadedFiles.galleryCount || 0) + 
+                    (reg.uploadedFiles.documentsCount || 0) : 0);
+                
+                row.innerHTML = `
+                    <td><span class="badge ${statusClass}">${reg.schoolId || 'N/A'}</span></td>
+                    <td><strong>${reg.schoolName || 'Unknown School'}</strong></td>
+                    <td>${formattedDate}</td>
+                    <td>${logoPreview}</td>
+                    <td><span class="badge bg-dark">${fileCount} files</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-dark view-btn" data-index="${index}" title="View Details">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-dark download-btn ms-1" data-index="${index}" title="Download Data">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-dark mark-btn ms-1" data-index="${index}" title="Mark as Reviewed">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Add event listeners to buttons
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    viewRegistration(index);
+                });
+            });
+            
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    downloadRegistration(index);
+                });
+            });
+            
+            document.querySelectorAll('.mark-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    markAsReviewed(index);
+                });
+            });
+            
+            // Mark notifications as read when modal is opened
+            markNotificationsAsRead();
+        }
+        
+        function viewRegistration(index) {
+            const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
+            const registration = registrations[index];
+            
+            // Get media files
+            const mediaFiles = JSON.parse(localStorage.getItem(`${MEDIA_FILES_KEY}_${registration.schoolId}`) || '{}');
+            
+            // Create detailed view modal
+            const modalContent = `
+                <div class="modal-header">
+                    <h5 class="modal-title">${registration.schoolName || 'School Registration Details'}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <h6 class="border-bottom pb-2">Basic Information</h6>
+                        <div class="row">
+                            <div class="col-md-6"><strong>School ID:</strong> ${registration.schoolId || 'N/A'}</div>
+                            <div class="col-md-6"><strong>Registration Date:</strong> ${new Date(registration.submissionDate).toLocaleDateString()}</div>
+                            <div class="col-md-6"><strong>Type:</strong> ${registration.schoolType || 'N/A'}</div>
+                            <div class="col-md-6"><strong>Level:</strong> ${registration.educationLevel || 'N/A'}</div>
+                            <div class="col-md-6"><strong>Province:</strong> ${registration.province || 'N/A'}</div>
+                            <div class="col-md-6"><strong>City:</strong> ${registration.city || 'N/A'}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h6 class="border-bottom pb-2">Contact Information</h6>
+                        <div class="row">
+                            <div class="col-md-6"><strong>Phone:</strong> ${registration.phonePrimary || 'N/A'}</div>
+                            <div class="col-md-6"><strong>Email:</strong> ${registration.emailPrimary || 'N/A'}</div>
+                            <div class="col-md-12"><strong>Address:</strong> ${registration.address || 'N/A'}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h6 class="border-bottom pb-2">Uploaded Files</h6>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul>
+                                    ${mediaFiles.logo ? `<li><i class="fas fa-image me-2"></i>Logo: ${mediaFiles.logo.name}</li>` : ''}
+                                    ${mediaFiles.banner ? `<li><i class="fas fa-image me-2"></i>Banner: ${mediaFiles.banner.name}</li>` : ''}
+                                    ${mediaFiles.gallery && mediaFiles.gallery.length > 0 ? `<li><i class="fas fa-images me-2"></i>Gallery: ${mediaFiles.gallery.length} images</li>` : ''}
+                                    ${mediaFiles.documents && mediaFiles.documents.length > 0 ? `<li><i class="fas fa-file-pdf me-2"></i>Documents: ${mediaFiles.documents.length} files</li>` : ''}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-dark" onclick="downloadRegistration(${index})">
+                            <i class="fas fa-download me-2"></i>Download Full Data
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Create and show modal
+            const modalDiv = document.createElement('div');
+            modalDiv.className = 'modal fade';
+            modalDiv.innerHTML = `
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        ${modalContent}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modalDiv);
+            const modal = new bootstrap.Modal(modalDiv);
+            modal.show();
+            
+            // Remove modal from DOM after hidden
+            modalDiv.addEventListener('hidden.bs.modal', function() {
+                document.body.removeChild(modalDiv);
+            });
+        }
+        
+        function markAsReviewed(index) {
+            let registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
+            if (registrations[index]) {
+                registrations[index].reviewed = true;
+                localStorage.setItem(REGISTRATIONS_KEY, JSON.stringify(registrations));
+                
+                Toastify({
+                    text: "Marked as reviewed",
+                    duration: 2000,
+                    gravity: "bottom",
+                    position: "right",
+                    backgroundColor: "#4a4a4a",
+                    className: "toast-dark"
+                }).showToast();
+                
+                // Reload table
+                loadRegistrationsTable();
+            }
+        }
+        
+        function markNotificationsAsRead() {
+            let notifications = JSON.parse(localStorage.getItem(ADMIN_NOTIFICATIONS_KEY)) || [];
+            notifications = notifications.map(n => ({...n, read: true}));
+            localStorage.setItem(ADMIN_NOTIFICATIONS_KEY, JSON.stringify(notifications));
+            updateAdminBadge();
+        }
+        
+        function clearAllData() {
+            if (confirm('Are you sure you want to clear all registration data? This action cannot be undone.')) {
+                // Clear all registration data
+                localStorage.removeItem(REGISTRATIONS_KEY);
+                localStorage.removeItem(ADMIN_NOTIFICATIONS_KEY);
+                localStorage.removeItem(FORM_DATA_KEY);
+                
+                // Clear all media files
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith(MEDIA_FILES_KEY)) {
+                        keysToRemove.push(key);
+                    }
+                }
+                
+                keysToRemove.forEach(key => localStorage.removeItem(key));
+                
+                Toastify({
+                    text: "All data cleared successfully",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "right",
+                    backgroundColor: "#1a1a1a",
+                    className: "toast-dark"
+                }).showToast();
+                
+                // Reload table and update stats
+                loadRegistrationsTable();
+                updateAdminBadge();
+            }
+        }
+        
+        // ============================================
+        // DOWNLOAD FUNCTIONS
+        // ============================================
+        
+        function downloadRegistration(index) {
+            const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
+            const registration = registrations[index];
+            
+            // Get media files
+            const mediaFiles = JSON.parse(localStorage.getItem(`${MEDIA_FILES_KEY}_${registration.schoolId}`) || '{}');
+            
+            // Combine registration data with media info
+            const fullData = {
+                ...registration,
+                mediaFiles: mediaFiles
+            };
+            
+            const dataStr = JSON.stringify(fullData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `scholastic_registration_${registration.schoolId || registration.submissionId || 'unknown'}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            Toastify({
+                text: "Registration data downloaded",
+                duration: 3000,
+                gravity: "bottom",
+                position: "right",
+                backgroundColor: "#666666",
+                className: "toast-dark"
+            }).showToast();
+        }
+        
+        async function downloadMediaFiles() {
+            if (!uploadedFiles.logo && uploadedFiles.gallery.length === 0 && uploadedFiles.documents.length === 0) {
+                Toastify({
+                    text: "No media files to download",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "right",
+                    backgroundColor: "#666666",
+                    className: "toast-dark"
+                }).showToast();
+                return;
+            }
+            
+            const zip = new JSZip();
+            const formData = getFormData();
+            const schoolName = formData.schoolName || 'school';
+            const safeSchoolName = schoolName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            
+            // Add logo
+            if (uploadedFiles.logo) {
+                const logoData = uploadedFiles.logo.data.split(',')[1];
+                zip.file(`${safeSchoolName}_logo.${getFileExtension(uploadedFiles.logo.name)}`, logoData, { base64: true });
+            }
+            
+            // Add banner
+            if (uploadedFiles.banner) {
+                const bannerData = uploadedFiles.banner.data.split(',')[1];
+                zip.file(`${safeSchoolName}_banner.${getFileExtension(uploadedFiles.banner.name)}`, bannerData, { base64: true });
+            }
+            
+            // Add gallery images
+            uploadedFiles.gallery.forEach((file, index) => {
+                const imageData = file.data.split(',')[1];
+                zip.file(`${safeSchoolName}_gallery_${index + 1}.${getFileExtension(file.name)}`, imageData, { base64: true });
+            });
+            
+            // Add documents
+            uploadedFiles.documents.forEach((file, index) => {
+                const docData = file.data.split(',')[1];
+                zip.file(`${safeSchoolName}_document_${index + 1}.pdf`, docData, { base64: true });
+            });
+            
+            // Generate zip file
+            const content = await zip.generateAsync({ type: "blob" });
+            saveAs(content, `${safeSchoolName}_media_files.zip`);
+            
+            Toastify({
+                text: "Media files downloaded as ZIP",
+                duration: 3000,
+                gravity: "bottom",
+                position: "right",
+                backgroundColor: "#4a4a4a",
+                className: "toast-dark"
+            }).showToast();
+        }
+        
+        function getFileExtension(filename) {
+            return filename.split('.').pop().toLowerCase();
+        }
+        
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Get form data
+            const formData = getFormData();
+            
+            // PDF content with grayscale styling
+            doc.setFontSize(20);
+            doc.setTextColor(26, 26, 26); // Dark gray
+            doc.text('Scholastic Services Registration', 20, 20);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(64, 64, 64); // Medium gray
+            doc.text(`School Name: ${formData.schoolName || 'N/A'}`, 20, 40);
+            doc.text(`School ID: ${formData.schoolId || 'Pending'}`, 20, 50);
+            doc.text(`Registration Date: ${new Date().toLocaleDateString()}`, 20, 60);
+            doc.text(`Location: ${formData.city || ''}, ${formData.province || ''}`, 20, 70);
+            doc.text(`Contact: ${formData.phonePrimary || ''} | ${formData.emailPrimary || ''}`, 20, 80);
+            
+            // Add watermark
+            doc.setFontSize(40);
+            doc.setTextColor(230, 230, 230); // Light gray
+            doc.text('SCHOLASTIC', 40, 150, { angle: 45 });
+            
+            // Save PDF
+            doc.save(`scholastic_registration_${formData.schoolId || formData.submissionId}.pdf`);
+            
+            Toastify({
+                text: "PDF downloaded successfully!",
+                duration: 3000,
+                gravity: "bottom",
+                position: "right",
+                backgroundColor: "#4a4a4a",
+                className: "toast-dark"
+            }).showToast();
+        }
+        
+        function downloadJSON() {
+            const formData = getFormData();
+            const dataStr = JSON.stringify(formData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `scholastic_registration_${formData.submissionId}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            Toastify({
+                text: "JSON file downloaded!",
+                duration: 3000,
+                gravity: "bottom",
+                position: "right",
+                backgroundColor: "#666666",
+                className: "toast-dark"
+            }).showToast();
+        }
+        
+        function exportAllRegistrations() {
+            const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
+            
+            if (registrations.length === 0) {
+                Toastify({
+                    text: "No registrations to export",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "right",
+                    backgroundColor: "#666666",
+                    className: "toast-dark"
+                }).showToast();
+                return;
+            }
+            
+            // Create CSV content
+            const headers = ['School ID', 'School Name', 'Province', 'City', 'Phone', 'Email', 'Registration Date', 'Students', 'Teachers', 'Status', 'Files'];
+            const csvRows = [headers.join(',')];
+            
+            registrations.forEach(reg => {
+                const fileCount = (reg.uploadedFiles ? 
+                    (reg.uploadedFiles.logo ? 1 : 0) + 
+                    (reg.uploadedFiles.banner ? 1 : 0) + 
+                    (reg.uploadedFiles.galleryCount || 0) + 
+                    (reg.uploadedFiles.documentsCount || 0) : 0);
+                
+                const row = [
+                    `"${reg.schoolId || ''}"`,
+                    `"${reg.schoolName || ''}"`,
+                    `"${reg.province || ''}"`,
+                    `"${reg.city || ''}"`,
+                    `"${reg.phonePrimary || ''}"`,
+                    `"${reg.emailPrimary || ''}"`,
+                    `"${new Date(reg.submissionDate || reg.timestamp).toLocaleDateString()}"`,
+                    `"${reg.totalStudents || '0'}"`,
+                    `"${reg.totalTeachers || '0'}"`,
+                    `"${reg.reviewed ? 'Reviewed' : 'Pending'}"`,
+                    `"${fileCount}"`
+                ];
+                csvRows.push(row.join(','));
+            });
+            
+            const csvContent = csvRows.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `scholastic_registrations_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            Toastify({
+                text: `Exported ${registrations.length} registrations as CSV`,
+                duration: 3000,
+                gravity: "bottom",
+                position: "right",
+                backgroundColor: "#1a1a1a",
+                className: "toast-dark"
+            }).showToast();
+        }
+        
+        // ============================================
+        // MAKE FUNCTIONS AVAILABLE GLOBALLY
+        // ============================================
+        
+        window.removeFile = removeFile;
+        window.removeGalleryImage = removeGalleryImage;
+        window.removeDocument = removeDocument;
+        window.viewRegistration = viewRegistration;
+        window.downloadRegistration = downloadRegistration;
+        window.markAsReviewed = markAsReviewed;
+    </script>
+</body>
+</html>
