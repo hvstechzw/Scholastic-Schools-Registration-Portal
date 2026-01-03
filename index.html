@@ -9,292 +9,143 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <style>
         :root {
-            --primary-dark: #1a1a1a;
-            --primary-light: #ffffff;
-            --secondary-light: #f8f9fa;
-            --accent: #6c757d;
-            --border-light: #dee2e6;
-            --border-dark: #495057;
-            --text-primary: #212529;
-            --text-secondary: #6c757d;
-            --text-light: #adb5bd;
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8f9fa;
+            --primary-text: #212529;
+            --secondary-text: #6c757d;
+            --accent-color: #495057;
+            --border-color: #dee2e6;
             --shadow-light: rgba(0, 0, 0, 0.08);
             --shadow-medium: rgba(0, 0, 0, 0.12);
             --shadow-dark: rgba(0, 0, 0, 0.2);
         }
-        
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: #121212;
+                --secondary-bg: #1e1e1e;
+                --primary-text: #ffffff;
+                --secondary-text: #adb5bd;
+                --accent-color: #adb5bd;
+                --border-color: #495057;
+                --shadow-light: rgba(0, 0, 0, 0.3);
+                --shadow-medium: rgba(0, 0, 0, 0.4);
+                --shadow-dark: rgba(0, 0, 0, 0.5);
+            }
+        }
+
         body {
             font-family: 'Segoe UI', 'Roboto', sans-serif;
-            background-color: var(--primary-light);
-            color: var(--text-primary);
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
             line-height: 1.6;
         }
-        
-        /* Header */
+
         .header {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--secondary-bg), var(--border-color));
             padding: 3rem 0 2rem;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-color);
         }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%236c757d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .logo-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            box-shadow: 0 4px 12px var(--shadow-medium);
-            border: 1px solid var(--border-light);
-        }
-        
-        .logo-icon i {
-            font-size: 2.5rem;
-            color: var(--text-primary);
-        }
-        
-        .header h1 {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        
-        .header .lead {
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-        
+
         .section-title {
-            color: var(--text-primary);
-            border-bottom: 2px solid var(--accent);
+            color: var(--primary-text);
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 12px;
             margin-bottom: 30px;
             font-weight: 600;
-            letter-spacing: -0.5px;
         }
-        
-        /* Form Cards */
+
         .form-card {
-            background: var(--primary-light);
+            background: var(--primary-bg);
             border-radius: 10px;
             box-shadow: 0 4px 15px var(--shadow-light);
             padding: 35px;
             margin-bottom: 30px;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        
+
         .form-card:hover {
             box-shadow: 0 6px 20px var(--shadow-medium);
             transform: translateY(-2px);
         }
-        
+
         .form-label {
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--primary-text);
             margin-bottom: 8px;
             font-size: 0.95rem;
         }
-        
-        .required::after {
-            content: " *";
-            color: #dc3545;
-        }
-        
+
         .form-control, .form-select {
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 12px 15px;
             transition: all 0.3s;
-            background-color: var(--primary-light);
-            color: var(--text-primary);
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
         }
-        
+
         .form-control:focus, .form-select:focus {
-            border-color: var(--accent);
+            border-color: var(--accent-color);
             box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.15);
         }
-        
-        /* File Upload Styling */
+
         .upload-area {
-            border: 2px dashed var(--border-light);
+            border: 2px dashed var(--border-color);
             border-radius: 10px;
             padding: 40px 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            background-color: var(--secondary-light);
+            background-color: var(--secondary-bg);
         }
-        
+
         .upload-area:hover {
-            border-color: var(--accent);
-            background-color: var(--primary-light);
+            border-color: var(--accent-color);
+            background-color: var(--primary-bg);
         }
-        
+
         .upload-area.drag-over {
-            border-color: var(--accent);
+            border-color: var(--accent-color);
             background-color: rgba(108, 117, 125, 0.05);
         }
-        
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-        }
-        
-        .file-preview-container {
-            margin-top: 20px;
-        }
-        
+
         .file-preview {
-            background: var(--secondary-light);
+            background: var(--secondary-bg);
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 15px;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
         }
-        
+
         .file-preview-image {
             max-width: 200px;
             max-height: 150px;
             border-radius: 6px;
             margin-bottom: 10px;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
         }
-        
-        .file-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .file-name {
-            font-weight: 600;
-            color: var(--text-primary);
-            word-break: break-all;
-        }
-        
-        .file-size {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        .remove-file {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 5px;
-            transition: color 0.3s;
-        }
-        
-        .remove-file:hover {
-            color: var(--text-primary);
-        }
-        
-        .gallery-preview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            width: 120px;
-            height: 90px;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .remove-gallery-item {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        
-        /* Progress Bar */
-        .upload-progress {
-            height: 6px;
-            background-color: var(--border-light);
-            border-radius: 3px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-        
-        .upload-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--text-secondary));
-            width: 0%;
-            transition: width 0.3s;
-        }
-        
-        /* Image Requirements */
+
         .requirements-box {
-            background: var(--secondary-light);
+            background: var(--secondary-bg);
             border-radius: 8px;
             padding: 15px;
             margin-top: 15px;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
         }
-        
+
         .requirements-box h6 {
-            color: var(--text-primary);
+            color: var(--primary-text);
             margin-bottom: 10px;
         }
-        
+
         .requirements-box ul {
             margin: 0;
             padding-left: 20px;
-            color: var(--text-secondary);
+            color: var(--secondary-text);
         }
-        
-        .requirements-box li {
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-        
-        /* Buttons */
+
         .btn-primary {
             background: linear-gradient(to right, #6c757d, #495057);
             border: none;
@@ -302,88 +153,37 @@
             border-radius: 6px;
             font-weight: 600;
             transition: all 0.3s;
-            color: var(--primary-light);
+            color: white;
             box-shadow: 0 4px 10px var(--shadow-medium);
         }
-        
+
         .btn-primary:hover {
             background: linear-gradient(to right, #495057, #6c757d);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-dark);
-            color: var(--primary-light);
+            color: white;
         }
-        
-        .btn-success {
-            background: linear-gradient(to right, #6c757d, #495057);
-            border: none;
-            padding: 14px 32px;
-            border-radius: 6px;
-            font-weight: 600;
-            color: var(--primary-light);
-        }
-        
-        .btn-success:hover {
-            background: linear-gradient(to right, #495057, #6c757d);
-            color: var(--primary-light);
-        }
-        
-        .btn-outline-secondary {
-            border: 1px solid var(--border-dark);
-            color: var(--text-primary);
-        }
-        
-        .btn-outline-secondary:hover {
-            background-color: var(--secondary-light);
-            border-color: var(--accent);
-        }
-        
-        /* Footer */
-        .footer {
-            background: #343a40;
-            color: var(--primary-light);
-            padding: 50px 0 25px;
-            margin-top: 60px;
-        }
-        
-        .footer h5 {
-            color: var(--primary-light);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .footer a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer a:hover {
-            color: var(--primary-light);
-            text-decoration: underline;
-        }
-        
-        /* Progress Bar */
+
         .progress-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 4px;
-            background: var(--border-light);
+            background: var(--border-color);
             z-index: 1000;
         }
-        
+
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--text-secondary));
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-text));
             width: 0%;
             transition: width 0.3s;
         }
-        
-        /* Section Counters */
+
         .counter-badge {
-            background: var(--text-primary);
-            color: var(--primary-light);
+            background: var(--primary-text);
+            color: var(--primary-bg);
             border-radius: 50%;
             width: 36px;
             height: 36px;
@@ -395,14 +195,13 @@
             font-size: 1.1rem;
             box-shadow: 0 3px 8px var(--shadow-medium);
         }
-        
-        /* Admin Button */
+
         .admin-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: #495057;
-            color: var(--primary-light);
+            color: white;
             border: none;
             border-radius: 50px;
             padding: 15px 25px;
@@ -411,14 +210,20 @@
             transition: all 0.3s;
             font-weight: 600;
         }
-        
+
         .admin-btn:hover {
             background: #6c757d;
             transform: translateY(-3px);
             box-shadow: 0 8px 25px var(--shadow-dark);
         }
-        
-        /* Responsive Design */
+
+        .footer {
+            background: #343a40;
+            color: white;
+            padding: 50px 0 25px;
+            margin-top: 60px;
+        }
+
         @media (max-width: 768px) {
             .form-card {
                 padding: 25px 20px;
@@ -428,128 +233,40 @@
                 padding: 2rem 0 1.5rem;
             }
             
-            .logo-icon {
-                width: 60px;
-                height: 60px;
-                margin-right: 15px;
-            }
-            
-            .logo-icon i {
-                font-size: 2rem;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
             .admin-btn {
                 bottom: 20px;
                 right: 20px;
                 padding: 12px 20px;
                 font-size: 0.9rem;
             }
-            
-            .gallery-item {
-                width: 100px;
-                height: 75px;
-            }
-        }
-        
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-light: #212529;
-                --secondary-light: #343a40;
-                --accent: #adb5bd;
-                --border-light: #495057;
-                --border-dark: #6c757d;
-                --text-primary: #f8f9fa;
-                --text-secondary: #ced4da;
-                --text-light: #6c757d;
-                --shadow-light: rgba(0, 0, 0, 0.3);
-                --shadow-medium: rgba(0, 0, 0, 0.4);
-                --shadow-dark: rgba(0, 0, 0, 0.5);
-            }
-            
-            body {
-                background-color: var(--primary-light);
-            }
-            
-            .header {
-                background: linear-gradient(135deg, #343a40, #495057);
-                color: var(--text-primary);
-            }
-            
-            .header .lead {
-                color: rgba(255, 255, 255, 0.8);
-            }
-            
-            .logo-icon {
-                background: #495057;
-            }
-            
-            .form-control, .form-select {
-                background-color: #343a40;
-                color: var(--text-primary);
-                border-color: #495057;
-            }
-            
-            .upload-area {
-                background-color: #343a40;
-            }
-            
-            .file-preview {
-                background: #343a40;
-            }
-            
-            .requirements-box {
-                background: #343a40;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Progress Bar -->
     <div class="progress-container">
         <div class="progress-bar" id="formProgress"></div>
     </div>
 
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-10">
-                    <div class="logo-container">
-                        <div class="logo-icon">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div>
-                            <h1>Scholastic Services Registration Portal</h1>
-                            <p class="lead">Professional School Management System Registration</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 text-lg-end mt-3 mt-lg-0">
-                    <div class="bg-white bg-opacity-10 rounded-pill px-3 py-2 d-inline-block">
-                        <i class="fas fa-shield-alt me-2"></i>Secure Portal
-                    </div>
+                <div class="col-lg-12">
+                    <h1>Scholastic Services Registration Portal</h1>
+                    <p class="lead" style="color: var(--secondary-text);">Professional School Management System Registration</p>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="container my-5">
-        <!-- Registration Form -->
         <div class="row justify-content-center">
             <div class="col-lg-11">
                 <div class="text-center mb-5">
                     <h2 class="section-title d-inline-block">School Registration Application</h2>
-                    <p class="text-muted">Complete all sections below to register for the Scholastic Services School Management System.</p>
+                    <p style="color: var(--secondary-text);">Complete all sections below to register for the Scholastic Services School Management System.</p>
                 </div>
                 
                 <form id="schoolRegistrationForm" novalidate>
-                    <!-- Section 1: Basic Information -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">1</span>
@@ -560,7 +277,7 @@
                             <div class="col-md-6 mb-3">
                                 <label class="form-label required">Official School Name</label>
                                 <input type="text" class="form-control" id="schoolName" required>
-                                <div class="form-text">Enter the full official name of your institution</div>
+                                <div class="form-text" style="color: var(--secondary-text);">Enter the full official name of your institution</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Short Name / Abbreviation</label>
@@ -630,12 +347,11 @@
                             <div class="col-md-12 mb-3">
                                 <label class="form-label required">Registration/License Number</label>
                                 <input type="text" class="form-control" id="registrationNumber" required>
-                                <div class="form-text">Official government registration number</div>
+                                <div class="form-text" style="color: var(--secondary-text);">Official government registration number</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Section 2: School Media Uploads -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">2</span>
@@ -653,92 +369,86 @@
                             </ul>
                         </div>
                         
-                        <!-- School Logo Upload -->
                         <div class="mb-4">
                             <label class="form-label required">School Logo</label>
-                            <p class="text-muted mb-3">Upload your school's official logo. This will be used on your school portal and documents.</p>
+                            <p style="color: var(--secondary-text);" class="mb-3">Upload your school's official logo. This will be used on your school portal and documents.</p>
                             
                             <div class="upload-area" id="logoUploadArea">
                                 <div class="upload-icon">
-                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
                                 </div>
                                 <h5>Upload School Logo</h5>
-                                <p class="text-muted">Drag & drop your logo here or click to browse</p>
-                                <p class="text-muted small">Recommended: 300x300px, PNG format with transparent background</p>
+                                <p style="color: var(--secondary-text);">Drag & drop your logo here or click to browse</p>
+                                <p style="color: var(--secondary-text);" class="small">Recommended: 300x300px, PNG format with transparent background</p>
                                 <input type="file" id="logoFile" accept=".png,.jpg,.jpeg,.svg,.gif" class="d-none">
                             </div>
                             
                             <div class="file-preview-container" id="logoPreviewContainer"></div>
                         </div>
                         
-                        <!-- School Banner Upload -->
                         <div class="mb-4">
                             <label class="form-label">School Banner/Header Image</label>
-                            <p class="text-muted mb-3">Upload a banner image for your school portal header (optional).</p>
+                            <p style="color: var(--secondary-text);" class="mb-3">Upload a banner image for your school portal header (optional).</p>
                             
                             <div class="upload-area" id="bannerUploadArea">
                                 <div class="upload-icon">
-                                    <i class="fas fa-image"></i>
+                                    <i class="fas fa-image" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
                                 </div>
                                 <h5>Upload Banner Image</h5>
-                                <p class="text-muted">Drag & drop your banner here or click to browse</p>
-                                <p class="text-muted small">Recommended: 1200x400px, JPG or PNG format</p>
+                                <p style="color: var(--secondary-text);">Drag & drop your banner here or click to browse</p>
+                                <p style="color: var(--secondary-text);" class="small">Recommended: 1200x400px, JPG or PNG format</p>
                                 <input type="file" id="bannerFile" accept=".png,.jpg,.jpeg,.gif" class="d-none">
                             </div>
                             
                             <div class="file-preview-container" id="bannerPreviewContainer"></div>
                         </div>
                         
-                        <!-- School Gallery Upload -->
                         <div class="mb-4">
                             <label class="form-label">School Gallery Images</label>
-                            <p class="text-muted mb-3">Upload up to 10 images showcasing your school facilities, classrooms, events, etc.</p>
+                            <p style="color: var(--secondary-text);" class="mb-3">Upload up to 10 images showcasing your school facilities, classrooms, events, etc.</p>
                             
                             <div class="upload-area" id="galleryUploadArea">
                                 <div class="upload-icon">
-                                    <i class="fas fa-images"></i>
+                                    <i class="fas fa-images" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
                                 </div>
                                 <h5>Upload Gallery Images</h5>
-                                <p class="text-muted">Drag & drop multiple images here or click to browse</p>
-                                <p class="text-muted small">You can upload up to 10 images (Max 5MB each)</p>
+                                <p style="color: var(--secondary-text);">Drag & drop multiple images here or click to browse</p>
+                                <p style="color: var(--secondary-text);" class="small">You can upload up to 10 images (Max 5MB each)</p>
                                 <input type="file" id="galleryFiles" accept=".png,.jpg,.jpeg,.gif" multiple class="d-none">
                             </div>
                             
                             <div class="gallery-preview" id="galleryPreview"></div>
                             <div class="mt-2">
-                                <small class="text-muted" id="galleryCounter">0 images selected</small>
+                                <small style="color: var(--secondary-text);" id="galleryCounter">0 images selected</small>
                             </div>
                         </div>
                         
-                        <!-- School Documents Upload -->
                         <div class="mb-4">
                             <label class="form-label">School Documents</label>
-                            <p class="text-muted mb-3">Upload important school documents (registration certificates, licenses, etc.)</p>
+                            <p style="color: var(--secondary-text);" class="mb-3">Upload important school documents (registration certificates, licenses, etc.)</p>
                             
                             <div class="upload-area" id="documentsUploadArea">
                                 <div class="upload-icon">
-                                    <i class="fas fa-file-pdf"></i>
+                                    <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
                                 </div>
                                 <h5>Upload Documents</h5>
-                                <p class="text-muted">Drag & drop PDF documents here or click to browse</p>
-                                <p class="text-muted small">PDF format only (Max 10MB each)</p>
+                                <p style="color: var(--secondary-text);">Drag & drop PDF documents here or click to browse</p>
+                                <p style="color: var(--secondary-text);" class="small">PDF format only (Max 10MB each)</p>
                                 <input type="file" id="documentFiles" accept=".pdf" multiple class="d-none">
                             </div>
                             
                             <div class="file-preview-container" id="documentsPreviewContainer"></div>
                         </div>
                         
-                        <!-- Virtual Tour Link -->
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label class="form-label">Virtual Tour Link</label>
                                 <input type="url" class="form-control" id="virtualTourLink" placeholder="https://example.com/virtual-tour">
-                                <div class="form-text">Link to a virtual tour of your school (YouTube, Google Street View, etc.)</div>
+                                <div class="form-text" style="color: var(--secondary-text);">Link to a virtual tour of your school (YouTube, Google Street View, etc.)</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Section 3: Location & Contact -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">3</span>
@@ -824,7 +534,6 @@
                         </div>
                     </div>
                     
-                    <!-- Section 4: Administrative Details -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">4</span>
@@ -876,7 +585,6 @@
                         </div>
                     </div>
                     
-                    <!-- Section 5: Academic Information -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">5</span>
@@ -929,7 +637,6 @@
                         </div>
                     </div>
                     
-                    <!-- Section 6: Infrastructure & Facilities -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">6</span>
@@ -1034,18 +741,6 @@
                                     <label class="form-check-label" for="hasSmartClasses">Smart Classrooms</label>
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="hostelFacilities" value="Hostel">
-                                    <label class="form-check-label" for="hostelFacilities">Hostel Facilities</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="transportServices" value="Transport">
-                                    <label class="form-check-label" for="transportServices">Transport Services</label>
-                                </div>
-                            </div>
                         </div>
                         
                         <div class="row">
@@ -1056,7 +751,6 @@
                         </div>
                     </div>
                     
-                    <!-- Section 7: Financial Information -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">7</span>
@@ -1100,7 +794,6 @@
                         </div>
                     </div>
                     
-                    <!-- Section 8: Mission, Vision & Description -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">8</span>
@@ -1129,65 +822,27 @@
                         </div>
                     </div>
                     
-                    <!-- Section 9: Terms & Conditions -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">9</span>
                             <h3 class="mb-0">Terms & Conditions</h3>
                         </div>
                         
-                        <div class="terms-box mb-4" style="max-height: 300px; overflow-y: auto; padding: 25px; background: var(--secondary-light); border-radius: 8px; border: 1px solid var(--border-light);">
-                            <h5>Scholastic Services School Management System - Terms and Conditions</h5>
-                            <p><strong>Effective Date:</strong> January 1, 2025</p>
+                        <div class="terms-box mb-4" style="max-height: 300px; overflow-y: auto; padding: 25px; background: var(--secondary-bg); border-radius: 8px; border: 1px solid var(--border-color);">
+                            <h5 style="color: var(--primary-text);">Scholastic Services School Management System - Terms and Conditions</h5>
+                            <p style="color: var(--secondary-text);"><strong>Effective Date:</strong> January 1, 2025</p>
                             
-                            <h6>1. Acceptance of Terms</h6>
-                            <p>By registering for the Scholastic School Management System, you agree to be bound by these Terms and Conditions. If you do not agree to all terms, do not use the service.</p>
+                            <h6 style="color: var(--primary-text);">1. Acceptance of Terms</h6>
+                            <p style="color: var(--secondary-text);">By registering for the Scholastic School Management System, you agree to be bound by these Terms and Conditions. If you do not agree to all terms, do not use the service.</p>
                             
-                            <h6>2. Service Description</h6>
-                            <p>The Scholastic School Management System provides schools with comprehensive management tools including student records, teacher management, fee collection, reporting, and communication features.</p>
+                            <h6 style="color: var(--primary-text);">2. Service Description</h6>
+                            <p style="color: var(--secondary-text);">The Scholastic School Management System provides schools with comprehensive management tools including student records, teacher management, fee collection, reporting, and communication features.</p>
                             
-                            <h6>3. Registration Requirements</h6>
-                            <p>To register, you must provide accurate, current, and complete information about your school. You are responsible for maintaining the confidentiality of your account and password.</p>
+                            <h6 style="color: var(--primary-text);">3. Registration Requirements</h6>
+                            <p style="color: var(--secondary-text);">To register, you must provide accurate, current, and complete information about your school. You are responsible for maintaining the confidentiality of your account and password.</p>
                             
-                            <h6>4. Free Trial Period</h6>
-                            <p>All new schools receive a 30-day free trial with full access to the system. After the trial period, you must subscribe to a paid package to continue using the service.</p>
-                            
-                            <h6>5. Data Privacy and Security</h6>
-                            <p>We implement industry-standard security measures to protect your data. We will not share your school's data with third parties without your consent, except as required by law.</p>
-                            
-                            <h6>6. School Responsibilities</h6>
-                            <p>You are responsible for:</p>
-                            <ul>
-                                <li>Accurate data entry and maintenance</li>
-                                <li>Complying with data protection laws</li>
-                                <li>Obtaining necessary consents for student/parent data</li>
-                                <li>Secure handling of login credentials</li>
-                            </ul>
-                            
-                            <h6>7. Payment Terms</h6>
-                            <p>Subscription fees are billed monthly or annually in advance. Payments are non-refundable except as required by law.</p>
-                            
-                            <h6>8. Intellectual Property</h6>
-                            <p>The Scholastic system and all related software, documentation, and content are the property of Scholastic Services and High Voltage Software Technologies.</p>
-                            
-                            <h6>9. Limitation of Liability</h6>
-                            <p>Our liability for any claims related to the service is limited to the amount paid for the service during the 12 months preceding the claim.</p>
-                            
-                            <h6>10. Termination</h6>
-                            <p>We may terminate or suspend access to the service immediately if you violate these terms.</p>
-                            
-                            <h6>11. Governing Law</h6>
-                            <p>These terms are governed by the laws of Zimbabwe. Any disputes shall be resolved in the courts of Zimbabwe.</p>
-                            
-                            <h6>12. Changes to Terms</h6>
-                            <p>We reserve the right to modify these terms at any time. Continued use of the service after changes constitutes acceptance of the new terms.</p>
-                            
-                            <h6>13. Contact Information</h6>
-                            <p>For questions about these terms, contact:<br>
-                            Scholastic Services | High Voltage Software Technologies<br>
-                            Hwange, Zimbabwe<br>
-                            Email: scholasticserviceszw@gmail.com<br>
-                            Phone: +263 785 558 261</p>
+                            <h6 style="color: var(--primary-text);">4. Data Privacy and Security</h6>
+                            <p style="color: var(--secondary-text);">We implement industry-standard security measures to protect your data. We will not share your school's data with third parties without your consent, except as required by law.</p>
                         </div>
                         
                         <div class="row mb-4">
@@ -1203,20 +858,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="marketingConsent">
-                                    <label class="form-check-label" for="marketingConsent">
-                                        I agree to receive occasional updates, tips, and promotional materials about the Scholastic School Management System
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     
-                    <!-- Submit Section -->
                     <div class="form-card text-center">
                         <div class="d-flex justify-content-center mb-4">
                             <div class="me-3">
@@ -1230,7 +873,7 @@
                                 </button>
                             </div>
                         </div>
-                        <p class="text-muted">
+                        <p style="color: var(--secondary-text);">
                             <i class="fas fa-info-circle me-2"></i>
                             After submission, you will receive a confirmation email with your school ID and login credentials.
                         </p>
@@ -1240,24 +883,12 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="bg-white bg-opacity-10 rounded-circle p-2 me-3">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <h5 class="mb-0">Scholastic Services</h5>
-                    </div>
+                    <h5>Scholastic Services</h5>
                     <p class="opacity-75">Professional school management solutions for educational institutions in Zimbabwe and beyond. Empowering education through technology.</p>
-                    <div class="mt-3">
-                        <a href="#" class="text-white opacity-75 me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-white opacity-75 me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-white opacity-75 me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
-                    </div>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <h5>Contact Information</h5>
@@ -1265,8 +896,6 @@
                         <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Hwange, Zimbabwe</li>
                         <li class="mb-2"><i class="fas fa-phone me-2"></i>+263 785 558 261</li>
                         <li class="mb-2"><i class="fas fa-envelope me-2"></i>scholasticserviceszw@gmail.com</li>
-                        <li class="mb-2"><i class="fas fa-globe me-2"></i>N/A</li>
-                        <li><i class="fas fa-clock me-2"></i>Mon-Fri: 8:00 AM - 5:00 PM</li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">
@@ -1274,9 +903,7 @@
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">About Scholastic Services</a></li>
                         <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">System Features</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Pricing Plans</a></li>
                         <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Technical Support</a></li>
-                        <li><a href="#" class="text-white text-decoration-none opacity-75">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -1289,10 +916,9 @@
         </div>
     </footer>
 
-    <!-- Success Modal -->
     <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: var(--primary-bg); color: var(--primary-text);">
                 <div class="modal-header border-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -1303,7 +929,7 @@
                         </div>
                     </div>
                     <h3 class="mb-3">Registration Submitted Successfully!</h3>
-                    <p class="text-muted mb-4">Your school registration has been received. You will receive a confirmation email shortly with your school ID and login credentials.</p>
+                    <p style="color: var(--secondary-text);" class="mb-4">Your school registration has been received. You will receive a confirmation email shortly with your school ID and login credentials.</p>
                     
                     <div class="alert alert-info text-start">
                         <h6><i class="fas fa-info-circle me-2"></i>Uploaded Files:</h6>
@@ -1326,12 +952,11 @@
         </div>
     </div>
 
-    <!-- Admin Data Modal -->
     <div class="modal fade" id="adminDataModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: var(--primary-bg); color: var(--primary-text);">
                 <div class="modal-header">
-                    <h5 class="modal-title">School Registration Data</h5>
+                    <h5 class="modal-title">School Registration Data - Admin Access</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -1340,9 +965,18 @@
                             <i class="fas fa-exclamation-triangle me-2"></i>
                             <strong>Admin Access Only:</strong> All school registrations with uploaded media files.
                         </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h6>Admin Login</h6>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" id="adminPassword" placeholder="Enter admin password">
+                                </div>
+                                <button class="btn btn-sm btn-dark" id="adminLoginBtn">Login</button>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="adminDataSection" style="display: none;">
                         <table class="table table-hover" id="registrationsTable">
                             <thead class="table-dark">
                                 <tr>
@@ -1355,44 +989,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Data will be populated by JavaScript -->
                             </tbody>
                         </table>
-                    </div>
-                    
-                    <div class="mt-4 text-end">
-                        <button type="button" class="btn btn-outline-secondary me-2" id="clearAllBtn">
-                            <i class="fas fa-trash me-2"></i>Clear All Data
-                        </button>
-                        <button type="button" class="btn btn-dark" id="exportAllBtn">
-                            <i class="fas fa-file-excel me-2"></i>Export All as CSV
-                        </button>
+                        
+                        <div class="mt-4 text-end">
+                            <button type="button" class="btn btn-outline-secondary me-2" id="clearAllBtn">
+                                <i class="fas fa-trash me-2"></i>Clear All Data
+                            </button>
+                            <button type="button" class="btn btn-dark" id="exportAllBtn">
+                                <i class="fas fa-file-excel me-2"></i>Export All as CSV
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Admin Access Button -->
     <button type="button" class="admin-btn" id="adminAccessBtn" data-bs-toggle="modal" data-bs-target="#adminDataModal">
         <i class="fas fa-user-shield me-2"></i>Admin Access
         <span class="badge bg-danger ms-2" id="notificationBadge" style="display: none;">0</span>
     </button>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script>
-        // Global variables
         const FORM_DATA_KEY = 'scholastic_registration_draft';
         const REGISTRATIONS_KEY = 'scholastic_registrations';
         const ADMIN_NOTIFICATIONS_KEY = 'scholastic_notifications';
         const MEDIA_FILES_KEY = 'scholastic_media_files';
+        const ADMIN_PASSWORD = 'admin123';
         
-        // File storage
         let uploadedFiles = {
             logo: null,
             banner: null,
@@ -1400,21 +1030,12 @@
             documents: []
         };
         
-        // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Load saved draft if exists
             loadDraft();
-            
-            // Setup form validation
             setupFormValidation();
-            
-            // Setup form progress tracking
             setupProgressTracking();
-            
-            // Setup file upload handlers
             setupFileUploads();
             
-            // Setup event listeners
             document.getElementById('saveDraftBtn').addEventListener('click', saveDraft);
             document.getElementById('schoolRegistrationForm').addEventListener('submit', submitForm);
             document.getElementById('downloadPDFBtn').addEventListener('click', downloadPDF);
@@ -1422,27 +1043,18 @@
             document.getElementById('downloadMediaBtn').addEventListener('click', downloadMediaFiles);
             document.getElementById('exportAllBtn').addEventListener('click', exportAllRegistrations);
             document.getElementById('clearAllBtn').addEventListener('click', clearAllData);
+            document.getElementById('adminLoginBtn').addEventListener('click', adminLogin);
             
-            // Load registrations for admin
-            loadRegistrationsTable();
-            
-            // Check for new registrations
             checkNewRegistrations();
         });
         
-        // ============================================
-        // FORM VALIDATION & PROGRESS TRACKING
-        // ============================================
-        
         function setupFormValidation() {
             const form = document.getElementById('schoolRegistrationForm');
-            
             form.addEventListener('submit', function(event) {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
-                
                 form.classList.add('was-validated');
             }, false);
         }
@@ -1455,100 +1067,52 @@
             
             function updateProgress() {
                 let filledSections = 0;
-                
                 sections.forEach(section => {
                     const inputs = section.querySelectorAll('input[required], select[required], textarea[required]');
                     let sectionFilled = true;
-                    
                     inputs.forEach(input => {
-                        if (!input.value.trim()) {
-                            sectionFilled = false;
-                        }
+                        if (!input.value.trim()) sectionFilled = false;
                     });
-                    
                     if (sectionFilled) filledSections++;
                 });
                 
                 const progress = (filledSections / totalSections) * 100;
                 progressBar.style.width = `${progress}%`;
-                
-                // Change color based on progress
-                if (progress < 30) {
-                    progressBar.style.background = 'linear-gradient(90deg, #adb5bd, #6c757d)';
-                } else if (progress < 70) {
-                    progressBar.style.background = 'linear-gradient(90deg, #6c757d, #495057)';
-                } else {
-                    progressBar.style.background = 'linear-gradient(90deg, #495057, #343a40)';
-                }
             }
             
-            // Update progress on any input change
             form.addEventListener('input', updateProgress);
             form.addEventListener('change', updateProgress);
-            
-            // Initial update
             updateProgress();
         }
         
-        // ============================================
-        // FILE UPLOAD SYSTEM
-        // ============================================
-        
         function setupFileUploads() {
-            // Logo upload
-            const logoUploadArea = document.getElementById('logoUploadArea');
-            const logoFileInput = document.getElementById('logoFile');
-            
-            logoUploadArea.addEventListener('click', () => logoFileInput.click());
-            logoFileInput.addEventListener('change', (e) => handleFileUpload(e, 'logo'));
-            
-            setupDragAndDrop(logoUploadArea, logoFileInput, 'logo');
-            
-            // Banner upload
-            const bannerUploadArea = document.getElementById('bannerUploadArea');
-            const bannerFileInput = document.getElementById('bannerFile');
-            
-            bannerUploadArea.addEventListener('click', () => bannerFileInput.click());
-            bannerFileInput.addEventListener('change', (e) => handleFileUpload(e, 'banner'));
-            
-            setupDragAndDrop(bannerUploadArea, bannerFileInput, 'banner');
-            
-            // Gallery upload
-            const galleryUploadArea = document.getElementById('galleryUploadArea');
-            const galleryFileInput = document.getElementById('galleryFiles');
-            
-            galleryUploadArea.addEventListener('click', () => galleryFileInput.click());
-            galleryFileInput.addEventListener('change', (e) => handleFileUpload(e, 'gallery'));
-            
-            setupDragAndDrop(galleryUploadArea, galleryFileInput, 'gallery');
-            
-            // Documents upload
-            const documentsUploadArea = document.getElementById('documentsUploadArea');
-            const documentFileInput = document.getElementById('documentFiles');
-            
-            documentsUploadArea.addEventListener('click', () => documentFileInput.click());
-            documentFileInput.addEventListener('change', (e) => handleFileUpload(e, 'documents'));
-            
-            setupDragAndDrop(documentsUploadArea, documentFileInput, 'documents');
+            setupUploadArea('logoUploadArea', 'logoFile', 'logo');
+            setupUploadArea('bannerUploadArea', 'bannerFile', 'banner');
+            setupUploadArea('galleryUploadArea', 'galleryFiles', 'gallery');
+            setupUploadArea('documentsUploadArea', 'documentFiles', 'documents');
         }
         
-        function setupDragAndDrop(uploadArea, fileInput, type) {
+        function setupUploadArea(areaId, fileInputId, type) {
+            const area = document.getElementById(areaId);
+            const fileInput = document.getElementById(fileInputId);
+            
+            area.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', (e) => handleFileUpload(e, type));
+            
             ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, preventDefaults, false);
+                area.addEventListener(eventName, preventDefaults, false);
             });
             
             ['dragenter', 'dragover'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, highlight, false);
+                area.addEventListener(eventName, () => area.classList.add('drag-over'), false);
             });
             
             ['dragleave', 'drop'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, unhighlight, false);
+                area.addEventListener(eventName, () => area.classList.remove('drag-over'), false);
             });
             
-            uploadArea.addEventListener('drop', (e) => {
-                const dt = e.dataTransfer;
-                const files = dt.files;
-                
+            area.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
                 if (type === 'gallery' || type === 'documents') {
                     fileInput.files = files;
                     handleFileUpload({ target: fileInput }, type);
@@ -1564,19 +1128,10 @@
             e.stopPropagation();
         }
         
-        function highlight(e) {
-            e.currentTarget.classList.add('drag-over');
-        }
-        
-        function unhighlight(e) {
-            e.currentTarget.classList.remove('drag-over');
-        }
-        
         function handleFileUpload(event, type) {
             const files = event.target.files;
             if (!files || files.length === 0) return;
             
-            // Validate files
             for (let file of files) {
                 if (!validateFile(file, type)) {
                     Toastify({
@@ -1591,13 +1146,10 @@
                 }
             }
             
-            // Process files based on type
             if (type === 'logo' || type === 'banner') {
-                // Single file upload
                 const file = files[0];
                 uploadFile(file, type);
             } else if (type === 'gallery') {
-                // Multiple gallery images
                 for (let file of files) {
                     if (uploadedFiles.gallery.length >= 10) {
                         Toastify({
@@ -1613,7 +1165,6 @@
                     uploadFile(file, type);
                 }
             } else if (type === 'documents') {
-                // Multiple documents
                 for (let file of files) {
                     uploadFile(file, type);
                 }
@@ -1622,10 +1173,10 @@
         
         function validateFile(file, type) {
             const maxSize = {
-                logo: 5 * 1024 * 1024, // 5MB
-                banner: 10 * 1024 * 1024, // 10MB
-                gallery: 5 * 1024 * 1024, // 5MB
-                documents: 10 * 1024 * 1024 // 10MB
+                logo: 5 * 1024 * 1024,
+                banner: 10 * 1024 * 1024,
+                gallery: 5 * 1024 * 1024,
+                documents: 10 * 1024 * 1024
             };
             
             const allowedTypes = {
@@ -1635,26 +1186,14 @@
                 documents: ['application/pdf']
             };
             
-            // Check file size
-            if (file.size > maxSize[type]) {
-                return false;
-            }
-            
-            // Check file type
-            if (!allowedTypes[type].includes(file.type)) {
-                return false;
-            }
-            
+            if (file.size > maxSize[type]) return false;
+            if (!allowedTypes[type].includes(file.type)) return false;
             return true;
         }
         
         function uploadFile(file, type) {
-            // Show upload progress
             showUploadProgress(file, type);
-            
-            // Simulate upload delay
             setTimeout(() => {
-                // Convert file to base64 for storage
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const fileData = {
@@ -1665,7 +1204,6 @@
                         uploaded: new Date().toISOString()
                     };
                     
-                    // Store file
                     if (type === 'logo') {
                         uploadedFiles.logo = fileData;
                         displayFilePreview(fileData, 'logo');
@@ -1680,10 +1218,7 @@
                         displayDocumentsPreview();
                     }
                     
-                    // Update counter for gallery
-                    if (type === 'gallery') {
-                        updateGalleryCounter();
-                    }
+                    if (type === 'gallery') updateGalleryCounter();
                     
                     Toastify({
                         text: `${file.name} uploaded successfully`,
@@ -1711,8 +1246,8 @@
                 <div class="file-preview" id="${progressId}">
                     <div class="file-info">
                         <div>
-                            <div class="file-name">${file.name}</div>
-                            <div class="file-size">${formatFileSize(file.size)}</div>
+                            <div class="file-name" style="color: var(--primary-text);">${file.name}</div>
+                            <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(file.size)}</div>
                         </div>
                         <div>Uploading...</div>
                     </div>
@@ -1728,13 +1263,11 @@
                 container.insertAdjacentHTML('beforeend', progressHTML);
             }
             
-            // Animate progress bar
             const progressBar = document.querySelector(`#${progressId} .upload-progress-bar`);
             let width = 0;
             const interval = setInterval(() => {
                 if (width >= 100) {
                     clearInterval(interval);
-                    // Remove progress element after upload
                     setTimeout(() => {
                         const element = document.getElementById(progressId);
                         if (element) element.remove();
@@ -1757,10 +1290,10 @@
                         <img src="${fileData.data}" alt="${fileData.name}" class="file-preview-image">
                         <div class="file-info">
                             <div>
-                                <div class="file-name">${fileData.name}</div>
-                                <div class="file-size">${formatFileSize(fileData.size)}</div>
+                                <div class="file-name" style="color: var(--primary-text);">${fileData.name}</div>
+                                <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(fileData.size)}</div>
                             </div>
-                            <button type="button" class="remove-file" onclick="removeFile('${type}')">
+                            <button type="button" class="remove-file" onclick="removeFile('${type}')" style="background: none; border: none; color: var(--secondary-text); cursor: pointer; padding: 5px; transition: color 0.3s;">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -1771,10 +1304,10 @@
                     <div class="file-preview">
                         <div class="file-info">
                             <div>
-                                <div class="file-name">${fileData.name}</div>
-                                <div class="file-size">${formatFileSize(fileData.size)}</div>
+                                <div class="file-name" style="color: var(--primary-text);">${fileData.name}</div>
+                                <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(fileData.size)}</div>
                             </div>
-                            <button type="button" class="remove-file" onclick="removeFile('${type}')">
+                            <button type="button" class="remove-file" onclick="removeFile('${type}')" style="background: none; border: none; color: var(--secondary-text); cursor: pointer; padding: 5px; transition: color 0.3s;">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -1791,9 +1324,9 @@
             
             uploadedFiles.gallery.forEach((file, index) => {
                 const itemHTML = `
-                    <div class="gallery-item">
-                        <img src="${file.data}" alt="${file.name}" class="gallery-image">
-                        <button type="button" class="remove-gallery-item" onclick="removeGalleryImage(${index})">
+                    <div class="gallery-item" style="position: relative; width: 120px; height: 90px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color);">
+                        <img src="${file.data}" alt="${file.name}" class="gallery-image" style="width: 100%; height: 100%; object-fit: cover;">
+                        <button type="button" class="remove-gallery-item" onclick="removeGalleryImage(${index})" style="position: absolute; top: 5px; right: 5px; background: rgba(0, 0, 0, 0.7); color: white; border: none; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.8rem;">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -1813,10 +1346,10 @@
                     <div class="file-preview">
                         <div class="file-info">
                             <div>
-                                <div class="file-name"><i class="fas fa-file-pdf me-2"></i>${file.name}</div>
-                                <div class="file-size">${formatFileSize(file.size)}</div>
+                                <div class="file-name" style="color: var(--primary-text);"><i class="fas fa-file-pdf me-2"></i>${file.name}</div>
+                                <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(file.size)}</div>
                             </div>
-                            <button type="button" class="remove-file" onclick="removeDocument(${index})">
+                            <button type="button" class="remove-file" onclick="removeDocument(${index})" style="background: none; border: none; color: var(--secondary-text); cursor: pointer; padding: 5px; transition: color 0.3s;">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -1863,33 +1396,24 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
         
-        // ============================================
-        // FORM DATA MANAGEMENT
-        // ============================================
-        
         function getFormData() {
             const formData = {};
             const form = document.getElementById('schoolRegistrationForm');
             
-            // Get all input values
             form.querySelectorAll('input, select, textarea').forEach(input => {
                 if (input.type === 'checkbox') {
                     formData[input.id] = input.checked;
-                } else if (input.type === 'radio') {
-                    if (input.checked) formData[input.name] = input.value;
                 } else {
                     formData[input.id] = input.value;
                 }
             });
             
-            // Get checked facilities
             const facilities = [];
             document.querySelectorAll('.facility:checked').forEach(checkbox => {
                 facilities.push(checkbox.value);
             });
             formData.facilities = facilities;
             
-            // Add timestamp
             formData.timestamp = new Date().toISOString();
             formData.submissionId = 'SCH-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
             
@@ -1908,7 +1432,6 @@
                 }
             });
             
-            // Set facilities checkboxes
             if (formData.facilities) {
                 document.querySelectorAll('.facility').forEach(checkbox => {
                     checkbox.checked = formData.facilities.includes(checkbox.value);
@@ -1918,7 +1441,6 @@
         
         function saveDraft() {
             const formData = getFormData();
-            // Store files in localStorage (limited by size)
             try {
                 localStorage.setItem(FORM_DATA_KEY, JSON.stringify({
                     formData: formData,
@@ -1954,7 +1476,6 @@
                     if (data.formData && data.uploadedFiles) {
                         setFormData(data.formData);
                         uploadedFiles = data.uploadedFiles;
-                        // Display uploaded files
                         if (uploadedFiles.logo) displayFilePreview(uploadedFiles.logo, 'logo');
                         if (uploadedFiles.banner) displayFilePreview(uploadedFiles.banner, 'banner');
                         if (uploadedFiles.gallery.length > 0) displayGalleryPreview();
@@ -1977,10 +1498,6 @@
             }
         }
         
-        // ============================================
-        // FORM SUBMISSION
-        // ============================================
-        
         async function submitForm(event) {
             event.preventDefault();
             
@@ -1990,7 +1507,6 @@
                 return;
             }
             
-            // Check if logo is uploaded (required)
             if (!uploadedFiles.logo) {
                 Toastify({
                     text: "Please upload a school logo",
@@ -2003,38 +1519,25 @@
                 return;
             }
             
-            // Disable submit button
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
             submitBtn.disabled = true;
             
-            // Get form data
             const formData = getFormData();
             
-            // Simulate upload delay
             await new Promise(resolve => setTimeout(resolve, 2000));
             
-            // Save registration to localStorage
             saveRegistration(formData);
-            
-            // Create admin notification
             createAdminNotification(formData);
-            
-            // Clear draft
             localStorage.removeItem(FORM_DATA_KEY);
-            
-            // Show uploaded files in success modal
             displayUploadedFilesInModal();
             
-            // Show success modal
             const successModal = new bootstrap.Modal(document.getElementById('successModal'));
             successModal.show();
             
-            // Reset button
             submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Submit Registration';
             submitBtn.disabled = false;
             
-            // Reset form and files
             form.reset();
             form.classList.remove('was-validated');
             uploadedFiles = { logo: null, banner: null, gallery: [], documents: [] };
@@ -2043,12 +1546,7 @@
             document.getElementById('galleryPreview').innerHTML = '';
             document.getElementById('documentsPreviewContainer').innerHTML = '';
             document.getElementById('galleryCounter').textContent = '0 images selected';
-            
-            // Update progress bar
             document.getElementById('formProgress').style.width = '0%';
-            
-            // Refresh admin table
-            loadRegistrationsTable();
         }
         
         function displayUploadedFilesInModal() {
@@ -2075,20 +1573,14 @@
             container.innerHTML = html;
         }
         
-        // ============================================
-        // DATA STORAGE & REGISTRATION MANAGEMENT
-        // ============================================
-        
         function saveRegistration(formData) {
             let registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
             
-            // Generate school ID
             const provinceCode = formData.province ? formData.province.substring(0, 3).toUpperCase() : 'SCH';
             const year = new Date().getFullYear() % 100;
             const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
             formData.schoolId = `${provinceCode}${year}${randomPart}`;
             
-            // Add uploaded files
             formData.uploadedFiles = {
                 logo: uploadedFiles.logo ? uploadedFiles.logo.name : null,
                 banner: uploadedFiles.banner ? uploadedFiles.banner.name : null,
@@ -2096,16 +1588,14 @@
                 documentsCount: uploadedFiles.documents.length
             };
             
-            // Store full files separately
             const registrationId = formData.schoolId;
             localStorage.setItem(`${MEDIA_FILES_KEY}_${registrationId}`, JSON.stringify(uploadedFiles));
             
-            // Add status and metadata
             formData.status = 'pending';
             formData.submissionDate = new Date().toISOString();
             formData.reviewed = false;
             
-            registrations.unshift(formData); // Add to beginning
+            registrations.unshift(formData);
             localStorage.setItem(REGISTRATIONS_KEY, JSON.stringify(registrations));
         }
         
@@ -2125,7 +1615,6 @@
             notifications.push(notification);
             localStorage.setItem(ADMIN_NOTIFICATIONS_KEY, JSON.stringify(notifications));
             
-            // Update admin button badge
             updateAdminBadge();
         }
         
@@ -2144,14 +1633,18 @@
         
         function checkNewRegistrations() {
             updateAdminBadge();
-            
-            // Check every 10 seconds for new registrations
             setInterval(updateAdminBadge, 10000);
         }
         
-        // ============================================
-        // ADMIN PANEL FUNCTIONS
-        // ============================================
+        function adminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById('adminDataSection').style.display = 'block';
+                loadRegistrationsTable();
+            } else {
+                alert('Incorrect password');
+            }
+        }
         
         function loadRegistrationsTable() {
             const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
@@ -2161,7 +1654,7 @@
             if (registrations.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="text-center py-4 text-muted">
+                        <td colspan="6" class="text-center py-4" style="color: var(--secondary-text);">
                             <i class="fas fa-inbox fa-2x mb-3 d-block"></i>
                             No registrations yet
                         </td>
@@ -2173,7 +1666,6 @@
             registrations.forEach((reg, index) => {
                 const row = document.createElement('tr');
                 
-                // Format date
                 const date = new Date(reg.submissionDate || reg.timestamp);
                 const formattedDate = date.toLocaleDateString('en-GB', {
                     day: '2-digit',
@@ -2181,11 +1673,9 @@
                     year: 'numeric'
                 });
                 
-                // Status badge
                 const statusClass = reg.reviewed ? 'bg-dark' : 'bg-secondary';
                 const statusText = reg.reviewed ? 'Reviewed' : 'New';
                 
-                // Get logo preview if available
                 let logoPreview = '-';
                 if (reg.uploadedFiles && reg.uploadedFiles.logo) {
                     const mediaFiles = JSON.parse(localStorage.getItem(`${MEDIA_FILES_KEY}_${reg.schoolId}`) || '{}');
@@ -2194,7 +1684,6 @@
                     }
                 }
                 
-                // Count files
                 const fileCount = (reg.uploadedFiles ? 
                     (reg.uploadedFiles.logo ? 1 : 0) + 
                     (reg.uploadedFiles.banner ? 1 : 0) + 
@@ -2223,7 +1712,6 @@
                 tableBody.appendChild(row);
             });
             
-            // Add event listeners to buttons
             document.querySelectorAll('.view-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const index = this.getAttribute('data-index');
@@ -2245,7 +1733,6 @@
                 });
             });
             
-            // Mark notifications as read when modal is opened
             markNotificationsAsRead();
         }
         
@@ -2253,10 +1740,8 @@
             const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
             const registration = registrations[index];
             
-            // Get media files
             const mediaFiles = JSON.parse(localStorage.getItem(`${MEDIA_FILES_KEY}_${registration.schoolId}`) || '{}');
             
-            // Create detailed view modal
             const modalContent = `
                 <div class="modal-header">
                     <h5 class="modal-title">${registration.schoolName || 'School Registration Details'}</h5>
@@ -2306,12 +1791,11 @@
                 </div>
             `;
             
-            // Create and show modal
             const modalDiv = document.createElement('div');
             modalDiv.className = 'modal fade';
             modalDiv.innerHTML = `
                 <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
+                    <div class="modal-content" style="background-color: var(--primary-bg); color: var(--primary-text);">
                         ${modalContent}
                     </div>
                 </div>
@@ -2321,7 +1805,6 @@
             const modal = new bootstrap.Modal(modalDiv);
             modal.show();
             
-            // Remove modal from DOM after hidden
             modalDiv.addEventListener('hidden.bs.modal', function() {
                 document.body.removeChild(modalDiv);
             });
@@ -2342,7 +1825,6 @@
                     className: "toast-dark"
                 }).showToast();
                 
-                // Reload table
                 loadRegistrationsTable();
             }
         }
@@ -2356,12 +1838,10 @@
         
         function clearAllData() {
             if (confirm('Are you sure you want to clear all registration data? This action cannot be undone.')) {
-                // Clear all registration data
                 localStorage.removeItem(REGISTRATIONS_KEY);
                 localStorage.removeItem(ADMIN_NOTIFICATIONS_KEY);
                 localStorage.removeItem(FORM_DATA_KEY);
                 
-                // Clear all media files
                 const keysToRemove = [];
                 for (let i = 0; i < localStorage.length; i++) {
                     const key = localStorage.key(i);
@@ -2381,24 +1861,17 @@
                     className: "toast-dark"
                 }).showToast();
                 
-                // Reload table and update stats
                 loadRegistrationsTable();
                 updateAdminBadge();
             }
         }
         
-        // ============================================
-        // DOWNLOAD FUNCTIONS
-        // ============================================
-        
         function downloadRegistration(index) {
             const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
             const registration = registrations[index];
             
-            // Get media files
             const mediaFiles = JSON.parse(localStorage.getItem(`${MEDIA_FILES_KEY}_${registration.schoolId}`) || '{}');
             
-            // Combine registration data with media info
             const fullData = {
                 ...registration,
                 mediaFiles: mediaFiles
@@ -2442,31 +1915,26 @@
             const schoolName = formData.schoolName || 'school';
             const safeSchoolName = schoolName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
             
-            // Add logo
             if (uploadedFiles.logo) {
                 const logoData = uploadedFiles.logo.data.split(',')[1];
                 zip.file(`${safeSchoolName}_logo.${getFileExtension(uploadedFiles.logo.name)}`, logoData, { base64: true });
             }
             
-            // Add banner
             if (uploadedFiles.banner) {
                 const bannerData = uploadedFiles.banner.data.split(',')[1];
                 zip.file(`${safeSchoolName}_banner.${getFileExtension(uploadedFiles.banner.name)}`, bannerData, { base64: true });
             }
             
-            // Add gallery images
             uploadedFiles.gallery.forEach((file, index) => {
                 const imageData = file.data.split(',')[1];
                 zip.file(`${safeSchoolName}_gallery_${index + 1}.${getFileExtension(file.name)}`, imageData, { base64: true });
             });
             
-            // Add documents
             uploadedFiles.documents.forEach((file, index) => {
                 const docData = file.data.split(',')[1];
                 zip.file(`${safeSchoolName}_document_${index + 1}.pdf`, docData, { base64: true });
             });
             
-            // Generate zip file
             const content = await zip.generateAsync({ type: "blob" });
             saveAs(content, `${safeSchoolName}_media_files.zip`);
             
@@ -2488,28 +1956,24 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            // Get form data
             const formData = getFormData();
             
-            // PDF content with grayscale styling
             doc.setFontSize(20);
-            doc.setTextColor(33, 37, 41); // Dark gray
+            doc.setTextColor(33, 37, 41);
             doc.text('Scholastic Services Registration', 20, 20);
             
             doc.setFontSize(12);
-            doc.setTextColor(108, 117, 125); // Medium gray
+            doc.setTextColor(108, 117, 125);
             doc.text(`School Name: ${formData.schoolName || 'N/A'}`, 20, 40);
             doc.text(`School ID: ${formData.schoolId || 'Pending'}`, 20, 50);
             doc.text(`Registration Date: ${new Date().toLocaleDateString()}`, 20, 60);
             doc.text(`Location: ${formData.city || ''}, ${formData.province || ''}`, 20, 70);
             doc.text(`Contact: ${formData.phonePrimary || ''} | ${formData.emailPrimary || ''}`, 20, 80);
             
-            // Add watermark
             doc.setFontSize(40);
-            doc.setTextColor(230, 230, 230); // Light gray
+            doc.setTextColor(230, 230, 230);
             doc.text('SCHOLASTIC', 40, 150, { angle: 45 });
             
-            // Save PDF
             doc.save(`scholastic_registration_${formData.schoolId || formData.submissionId}.pdf`);
             
             Toastify({
@@ -2559,7 +2023,6 @@
                 return;
             }
             
-            // Create CSV content
             const headers = ['School ID', 'School Name', 'Province', 'City', 'Phone', 'Email', 'Registration Date', 'Students', 'Teachers', 'Status', 'Files'];
             const csvRows = [headers.join(',')];
             
@@ -2606,10 +2069,6 @@
                 className: "toast-dark"
             }).showToast();
         }
-        
-        // ============================================
-        // MAKE FUNCTIONS AVAILABLE GLOBALLY
-        // ============================================
         
         window.removeFile = removeFile;
         window.removeGalleryImage = removeGalleryImage;
