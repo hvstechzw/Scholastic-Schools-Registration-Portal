@@ -217,28 +217,6 @@
             content: " *";
             color: #dc3545;
         }
-
-        /* Admin Panel Styles */
-        .admin-login {
-            background: rgba(0,0,0,0.7);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            display: none;
-        }
-
-        .admin-panel {
-            background: var(--primary-bg);
-            border-radius: 10px;
-            padding: 30px;
-            max-width: 800px;
-            margin: 50px auto;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
     </style>
 </head>
 <body>
@@ -247,83 +225,13 @@
         <div class="progress-bar" id="formProgress"></div>
     </div>
 
-    <!-- Admin Login Overlay -->
-    <div class="admin-login" id="adminLoginOverlay">
-        <div class="admin-panel">
-            <div class="text-end">
-                <button class="btn-close" onclick="closeAdminPanel()"></button>
-            </div>
-            <h3 class="mb-4"><i class="fas fa-user-shield me-2"></i>Admin Access</h3>
-            
-            <div class="mb-4">
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i>
-                    <strong>System Status:</strong> All data is stored in Google Sheets and Google Drive
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-table me-2"></i>Registration Data</h5>
-                            <p class="card-text">View all submitted school registrations in Google Sheets.</p>
-                            <button class="btn btn-primary w-100" onclick="openGoogleSheets()">
-                                <i class="fas fa-external-link-alt me-2"></i>Open Google Sheets
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-images me-2"></i>Uploaded Files</h5>
-                            <p class="card-text">Access all uploaded logos, banners, and documents in Google Drive.</p>
-                            <button class="btn btn-primary w-100" onclick="openGoogleDrive()">
-                                <i class="fas fa-external-link-alt me-2"></i>Open Google Drive
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-cogs me-2"></i>System Information</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Google Sheets Integration: <span class="badge bg-success">Active</span></li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Google Drive Storage: <span class="badge bg-success">Active</span></li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>File Uploads: <span class="badge bg-success">Enabled</span></li>
-                        <li><i class="fas fa-users me-2"></i>Access: Share Google Sheets/Drive links with admin team</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mt-4">
-                <h6>Admin Guide:</h6>
-                <ol>
-                    <li>Click "Open Google Sheets" to view registration data</li>
-                    <li>Click "Open Google Drive" to access uploaded files</li>
-                    <li>Share both links with your admin team</li>
-                    <li>Files are organized by school ID in Drive</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <h1>Scholastic Services Registration Portal</h1>
                     <p class="lead" style="color: var(--secondary-text);">Professional School Management System Registration</p>
-                </div>
-                <div class="col-lg-2 text-lg-end">
-                    <button class="btn btn-outline-dark" onclick="openAdminPanel()">
-                        <i class="fas fa-user-shield me-2"></i>Admin Access
-                    </button>
                 </div>
             </div>
         </div>
@@ -335,22 +243,17 @@
             <div class="col-lg-11">
                 <div class="text-center mb-5">
                     <h2 class="section-title d-inline-block">School Registration Application</h2>
-                    <p style="color: var(--secondary-text);">Complete all sections below to register for the Scholastic Services School Management System.</p>
-                    <div class="alert alert-success d-inline-block">
-                        <i class="fas fa-cloud-upload-alt me-2"></i>
-                        <strong>New:</strong> All files are now saved to Google Drive for admin access
-                    </div>
+                    <p style="color: var(--secondary-text);">Complete all 9 sections below to register for the Scholastic Services School Management System.</p>
                 </div>
                 
-                <!-- GOOGLE APPS SCRIPT WEB APP URL -->
-                <!-- REPLACE THIS WITH YOUR DEPLOYED WEB APP URL -->
+                <!-- ✅ REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL -->
                 <form id="schoolRegistrationForm" 
-                      action="https://script.google.com/macros/s/AKfycbwYOUR_DEPLOYED_SCRIPT_ID/exec"
+                      action="https://script.google.com/macros/s/YOUR_APPS_SCRIPT_WEB_APP_ID/exec"
                       method="POST"
                       enctype="multipart/form-data"
                       novalidate>
                     
-                    <!-- Section 1: Basic Information -->
+                    <!-- ========== SECTION 1: BASIC INFORMATION ========== -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">1</span>
@@ -360,19 +263,19 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label required">Official School Name</label>
-                                <input type="text" class="form-control" id="schoolName" name="schoolName" required>
+                                <input type="text" class="form-control" name="schoolName" required>
                                 <div class="form-text" style="color: var(--secondary-text);">Enter the full official name of your institution</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Short Name / Abbreviation</label>
-                                <input type="text" class="form-control" id="shortName" name="shortName">
+                                <input type="text" class="form-control" name="shortName">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label required">School Type</label>
-                                <select class="form-select" id="schoolType" name="schoolType" required>
+                                <select class="form-select" name="schoolType" required>
                                     <option value="">Select Type</option>
                                     <option value="Day">Day School</option>
                                     <option value="Boarding">Boarding School</option>
@@ -381,7 +284,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label required">Gender Focus</label>
-                                <select class="form-select" id="genderFocus" name="genderFocus" required>
+                                <select class="form-select" name="genderFocus" required>
                                     <option value="">Select Focus</option>
                                     <option value="Mixed">Mixed (Boys & Girls)</option>
                                     <option value="Boys Only">Boys Only</option>
@@ -393,7 +296,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label required">Education Level</label>
-                                <select class="form-select" id="educationLevel" name="educationLevel" required>
+                                <select class="form-select" name="educationLevel" required>
                                     <option value="">Select Level</option>
                                     <option value="Pre-School">Pre-School</option>
                                     <option value="Primary">Primary School</option>
@@ -405,7 +308,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label required">School Category</label>
-                                <select class="form-select" id="schoolCategory" name="schoolCategory" required>
+                                <select class="form-select" name="schoolCategory" required>
                                     <option value="">Select Category</option>
                                     <option value="Public">Public School</option>
                                     <option value="Private">Private School</option>
@@ -419,24 +322,24 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">School Motto</label>
-                                <input type="text" class="form-control" id="motto" name="motto" placeholder="e.g., Excellence Through Education">
+                                <input type="text" class="form-control" name="motto" placeholder="e.g., Excellence Through Education">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Year Established</label>
-                                <input type="number" class="form-control" id="establishmentYear" name="establishmentYear" min="1900" max="2025">
+                                <input type="number" class="form-control" name="establishmentYear" min="1900" max="2025">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label class="form-label required">Registration/License Number</label>
-                                <input type="text" class="form-control" id="registrationNumber" name="registrationNumber" required>
+                                <input type="text" class="form-control" name="registrationNumber" required>
                                 <div class="form-text" style="color: var(--secondary-text);">Official government registration number</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Section 2: School Media & Branding -->
+                    <!-- ========== SECTION 2: SCHOOL MEDIA & BRANDING ========== -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">2</span>
@@ -446,10 +349,10 @@
                         <div class="requirements-box mb-4">
                             <h6><i class="fas fa-info-circle me-2"></i>Upload Requirements</h6>
                             <ul>
-                                <li><strong>NEW:</strong> Files are saved to Google Drive for admin access</li>
+                                <li><strong>All files are saved to Google Drive for admin access</strong></li>
                                 <li>Logo: PNG, JPG, or SVG format (Max 5MB)</li>
                                 <li>Banner: JPG or PNG format (Max 10MB)</li>
-                                <li>Gallery: Up to 10 images (Max 5MB each)</li>
+                                <li>Gallery Images: Up to 10 images (Max 5MB each)</li>
                                 <li>Documents: PDF format only (Max 10MB each)</li>
                             </ul>
                         </div>
@@ -458,83 +361,428 @@
                             <label class="form-label required">School Logo</label>
                             <p style="color: var(--secondary-text);" class="mb-3">Upload your school's official logo. This will be saved to Google Drive.</p>
                             
-                            <div class="upload-area" id="logoUploadArea">
+                            <div class="upload-area" onclick="document.getElementById('logoFile').click();">
                                 <div class="upload-icon">
                                     <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
                                 </div>
                                 <h5>Upload School Logo</h5>
-                                <p style="color: var(--secondary-text);">Drag & drop your logo here or click to browse</p>
+                                <p style="color: var(--secondary-text);">Click to browse or drag & drop</p>
                                 <p style="color: var(--secondary-text);" class="small">Files are saved to Google Drive</p>
-                                <input type="file" id="logoFile" name="logoFile" accept=".png,.jpg,.jpeg,.svg,.gif" class="d-none">
+                                <input type="file" id="logoFile" name="logoFile" accept=".png,.jpg,.jpeg,.svg,.gif" class="d-none" required>
                             </div>
                             
-                            <div class="file-preview-container" id="logoPreviewContainer"></div>
+                            <div class="file-preview-container mt-3" id="logoPreviewContainer"></div>
                         </div>
                         
                         <div class="mb-4">
                             <label class="form-label">School Banner/Header Image</label>
                             <p style="color: var(--secondary-text);" class="mb-3">Upload a banner image for your school portal header (optional).</p>
-                            
-                            <div class="upload-area" id="bannerUploadArea">
-                                <div class="upload-icon">
-                                    <i class="fas fa-image" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
-                                </div>
-                                <h5>Upload Banner Image</h5>
-                                <p style="color: var(--secondary-text);">Drag & drop your banner here or click to browse</p>
-                                <input type="file" id="bannerFile" name="bannerFile" accept=".png,.jpg,.jpeg,.gif" class="d-none">
-                            </div>
-                            
-                            <div class="file-preview-container" id="bannerPreviewContainer"></div>
+                            <input type="file" class="form-control" name="bannerFile" accept=".png,.jpg,.jpeg,.gif">
                         </div>
                         
                         <div class="mb-4">
                             <label class="form-label">School Gallery Images</label>
-                            <p style="color: var(--secondary-text);" class="mb-3">Upload up to 10 images showcasing your school facilities.</p>
-                            
-                            <div class="upload-area" id="galleryUploadArea">
-                                <div class="upload-icon">
-                                    <i class="fas fa-images" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
-                                </div>
-                                <h5>Upload Gallery Images</h5>
-                                <p style="color: var(--secondary-text);">Drag & drop multiple images here or click to browse</p>
-                                <input type="file" id="galleryFiles" name="galleryFiles" accept=".png,.jpg,.jpeg,.gif" multiple class="d-none">
-                            </div>
-                            
-                            <div class="gallery-preview" id="galleryPreview"></div>
-                            <div class="mt-2">
-                                <small style="color: var(--secondary-text);" id="galleryCounter">0 images selected</small>
-                            </div>
+                            <p style="color: var(--secondary-text);" class="mb-3">Upload up to 10 images showcasing your school facilities, classrooms, events, etc.</p>
+                            <input type="file" class="form-control" name="galleryFiles" accept=".png,.jpg,.jpeg,.gif" multiple>
+                            <div class="form-text" style="color: var(--secondary-text);">You can select multiple images (Max 5MB each)</div>
                         </div>
                         
                         <div class="mb-4">
                             <label class="form-label">School Documents</label>
                             <p style="color: var(--secondary-text);" class="mb-3">Upload important school documents (registration certificates, licenses, etc.)</p>
-                            
-                            <div class="upload-area" id="documentsUploadArea">
-                                <div class="upload-icon">
-                                    <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
-                                </div>
-                                <h5>Upload Documents</h5>
-                                <p style="color: var(--secondary-text);">Drag & drop PDF documents here or click to browse</p>
-                                <input type="file" id="documentFiles" name="documentFiles" accept=".pdf" multiple class="d-none">
-                            </div>
-                            
-                            <div class="file-preview-container" id="documentsPreviewContainer"></div>
+                            <input type="file" class="form-control" name="documentFiles" accept=".pdf" multiple>
+                            <div class="form-text" style="color: var(--secondary-text);">PDF format only (Max 10MB each)</div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label class="form-label">Virtual Tour Link</label>
-                                <input type="url" class="form-control" id="virtualTourLink" name="virtualTourLink" placeholder="https://example.com/virtual-tour">
+                                <input type="url" class="form-control" name="virtualTourLink" placeholder="https://example.com/virtual-tour">
                                 <div class="form-text" style="color: var(--secondary-text);">Link to a virtual tour of your school (YouTube, Google Street View, etc.)</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Section 3-8: Remaining form sections (same as before, just ensure all inputs have name attributes) -->
-                    <!-- [Include all other sections from previous code with name attributes added] -->
+                    <!-- ========== SECTION 3: LOCATION & CONTACT ========== -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">3</span>
+                            <h3 class="mb-0">Location & Contact Information</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label required">Full Physical Address</label>
+                                <textarea class="form-control" name="address" rows="2" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">City/Town</label>
+                                <input type="text" class="form-control" name="city" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">Province/State</label>
+                                <select class="form-select" name="province" required>
+                                    <option value="">Select Province</option>
+                                    <option value="Bulawayo">Bulawayo</option>
+                                    <option value="Harare">Harare</option>
+                                    <option value="Manicaland">Manicaland</option>
+                                    <option value="Mashonaland Central">Mashonaland Central</option>
+                                    <option value="Mashonaland East">Mashonaland East</option>
+                                    <option value="Mashonaland West">Mashonaland West</option>
+                                    <option value="Masvingo">Masvingo</option>
+                                    <option value="Matabeleland North">Matabeleland North</option>
+                                    <option value="Matabeleland South">Matabeleland South</option>
+                                    <option value="Midlands">Midlands</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">District</label>
+                                <input type="text" class="form-control" name="district">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Primary Phone Number</label>
+                                <input type="tel" class="form-control" name="phonePrimary" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Secondary Phone Number</label>
+                                <input type="tel" class="form-control" name="phoneSecondary">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Primary Email Address</label>
+                                <input type="email" class="form-control" name="emailPrimary" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Secondary Email Address</label>
+                                <input type="email" class="form-control" name="emailSecondary">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">School Website</label>
+                                <input type="url" class="form-control" name="website" placeholder="https://">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Emergency Contact Number</label>
+                                <input type="tel" class="form-control" name="phoneEmergency">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Contact Person Name</label>
+                                <input type="text" class="form-control" name="contactPerson">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Contact Person Phone</label>
+                                <input type="tel" class="form-control" name="contactPhone">
+                            </div>
+                        </div>
+                    </div>
                     
-                    <!-- Terms Section -->
+                    <!-- ========== SECTION 4: ADMINISTRATIVE DETAILS ========== -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">4</span>
+                            <h3 class="mb-0">Administrative Details</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Principal/Head Teacher Name</label>
+                                <input type="text" class="form-control" name="principalName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Principal Phone</label>
+                                <input type="tel" class="form-control" name="principalPhone">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Principal Email</label>
+                                <input type="email" class="form-control" name="principalEmail">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Director/Proprietor Name</label>
+                                <input type="text" class="form-control" name="directorName">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Director Phone</label>
+                                <input type="tel" class="form-control" name="directorPhone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Director Email</label>
+                                <input type="email" class="form-control" name="directorEmail">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Board Chairperson Name</label>
+                                <input type="text" class="form-control" name="boardChairName">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Board Chairperson Phone</label>
+                                <input type="tel" class="form-control" name="boardChairPhone">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ========== SECTION 5: ACADEMIC INFORMATION ========== -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">5</span>
+                            <h3 class="mb-0">Academic Information</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">Curriculum</label>
+                                <select class="form-select" name="curriculum" required>
+                                    <option value="">Select Curriculum</option>
+                                    <option value="Heritage-Based Education">Heritage-Based Education</option>
+                                    <option value="Competence-Based Learning">Competence-Based Learning</option>
+                                    <option value="STEM Bias">STEM Bias</option>
+                                    <option value="British">British Curriculum</option>
+                                    <option value="American">American Curriculum</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Examination Board</label>
+                                <input type="text" class="form-control" name="examBoard">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">Total Students</label>
+                                <input type="number" class="form-control" name="totalStudents" min="0" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label required">Total Teachers</label>
+                                <input type="number" class="form-control" name="totalTeachers" min="0" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Total Staff (Non-teaching)</label>
+                                <input type="number" class="form-control" name="totalStaff" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Student Capacity</label>
+                                <input type="number" class="form-control" name="studentCapacity" min="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Average Class Size</label>
+                                <input type="number" class="form-control" name="averageClassSize" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ========== SECTION 6: INFRASTRUCTURE & FACILITIES ========== -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">6</span>
+                            <h3 class="mb-0">Infrastructure & Facilities</h3>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Total Classrooms</label>
+                                <input type="number" class="form-control" name="totalClassrooms" min="0">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Science Laboratories</label>
+                                <input type="number" class="form-control" name="scienceLabs" min="0">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Computer Labs</label>
+                                <input type="number" class="form-control" name="computerLabs" min="0">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Library Rooms</label>
+                                <input type="number" class="form-control" name="libraryRooms" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Boarding Capacity</label>
+                                <input type="number" class="form-control" name="boardingCapacity" min="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Day Scholars Capacity</label>
+                                <input type="number" class="form-control" name="dayScholarsCapacity" min="0">
+                            </div>
+                        </div>
+                        
+                        <h5 class="mb-3">Available Facilities (Check all that apply):</h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityLibrary" value="Library" id="hasLibrary">
+                                    <label class="form-check-label" for="hasLibrary">Library</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityScienceLab" value="Science Lab" id="hasScienceLab">
+                                    <label class="form-check-label" for="hasScienceLab">Science Laboratory</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityComputerLab" value="Computer Lab" id="hasComputerLab">
+                                    <label class="form-check-label" for="hasComputerLab">Computer Laboratory</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityPlayground" value="Playground" id="hasPlayground">
+                                    <label class="form-check-label" for="hasPlayground">Playground</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilitySportsField" value="Sports Field" id="hasSportsField">
+                                    <label class="form-check-label" for="hasSportsField">Sports Field</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilitySwimmingPool" value="Swimming Pool" id="hasSwimmingPool">
+                                    <label class="form-check-label" for="hasSwimmingPool">Swimming Pool</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityAuditorium" value="Auditorium" id="hasAuditorium">
+                                    <label class="form-check-label" for="hasAuditorium">Auditorium</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityCafeteria" value="Cafeteria" id="hasCafeteria">
+                                    <label class="form-check-label" for="hasCafeteria">Cafeteria</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityHealthClinic" value="Health Clinic" id="hasHealthClinic">
+                                    <label class="form-check-label" for="hasHealthClinic">Health Clinic</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilityWifi" value="Wi-Fi" id="hasWifi">
+                                    <label class="form-check-label" for="hasWifi">Wi-Fi Internet</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilitySmartClasses" value="Smart Classes" id="hasSmartClasses">
+                                    <label class="form-check-label" for="hasSmartClasses">Smart Classrooms</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Sports Facilities Description</label>
+                                <textarea class="form-control" name="sportsFacilities" rows="2" placeholder="e.g., Football field, basketball court, tennis court..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ========== SECTION 7: FINANCIAL INFORMATION ========== -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">7</span>
+                            <h3 class="mb-0">Financial Information</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Fee Range (Per Term)</label>
+                                <input type="text" class="form-control" name="feeRange" placeholder="e.g., $500 - $1,200">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Payment Plans Available</label>
+                                <select class="form-select" name="paymentPlan">
+                                    <option value="">Select Payment Plan</option>
+                                    <option value="Full Payment">Full Payment</option>
+                                    <option value="Installments">Installments</option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Termly">Termly</option>
+                                    <option value="Custom">Custom Plan</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="scholarshipsAvailable" id="scholarshipsAvailable">
+                                    <label class="form-check-label" for="scholarshipsAvailable">
+                                        Scholarships/Bursaries Available
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Scholarship Details (if applicable)</label>
+                                <textarea class="form-control" name="scholarshipDetails" rows="3" placeholder="Describe scholarship programs, eligibility criteria, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ========== SECTION 8: MISSION, VISION & DESCRIPTION ========== -->
+                    <div class="form-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="counter-badge">8</span>
+                            <h3 class="mb-0">Mission, Vision & School Description</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">School Mission Statement</label>
+                                <textarea class="form-control" name="mission" rows="3" placeholder="What is the core purpose of your school?"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">School Vision Statement</label>
+                                <textarea class="form-control" name="vision" rows="3" placeholder="What is your school's future aspiration?"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">School Description</label>
+                                <textarea class="form-control" name="description" rows="4" placeholder="Describe your school's history, achievements, unique features, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ========== SECTION 9: TERMS & CONDITIONS ========== -->
                     <div class="form-card">
                         <div class="d-flex align-items-center mb-4">
                             <span class="counter-badge">9</span>
@@ -553,12 +801,15 @@
                             
                             <h6 style="color: var(--primary-text);">3. Data Storage</h6>
                             <p style="color: var(--secondary-text);">All registration data is stored in Google Sheets. Uploaded files are saved to Google Drive. Administrators can access this data from any device.</p>
+                            
+                            <h6 style="color: var(--primary-text);">4. Privacy</h6>
+                            <p style="color: var(--secondary-text);">Your data will only be accessed by authorized administrators of Scholastic Services for the purpose of providing school management services.</p>
                         </div>
                         
                         <div class="row mb-4">
                             <div class="col-md-12">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                    <input class="form-check-input" type="checkbox" name="agreeTerms" id="agreeTerms" required>
                                     <label class="form-check-label required" for="agreeTerms">
                                         I have read, understood, and agree to the Terms and Conditions above
                                     </label>
@@ -570,12 +821,12 @@
                         </div>
                     </div>
                     
-                    <!-- Submit Section -->
+                    <!-- ========== SUBMIT SECTION ========== -->
                     <div class="form-card text-center">
                         <div class="d-flex justify-content-center mb-4">
                             <div>
                                 <button type="submit" class="btn btn-primary btn-lg px-5" id="submitBtn">
-                                    <i class="fas fa-paper-plane me-2"></i>Submit Registration
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Registration to Google Sheets & Drive
                                 </button>
                             </div>
                         </div>
@@ -594,7 +845,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p class="mb-0 opacity-75">&copy; 2025 Scholastic Services | Google Sheets + Drive Integration</p>
+                    <p class="mb-0 opacity-75">&copy; 2025 Scholastic Services | All registrations stored in Google Workspace</p>
                 </div>
             </div>
         </div>
@@ -604,9 +855,6 @@
     <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="background-color: var(--primary-bg); color: var(--primary-text);">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
                 <div class="modal-body text-center p-5">
                     <div class="mb-4">
                         <div class="bg-light rounded-circle d-inline-flex p-4">
@@ -614,23 +862,20 @@
                         </div>
                     </div>
                     <h3 class="mb-3">Registration Complete!</h3>
-                    <p style="color: var(--secondary-text);" class="mb-4">Your school registration has been saved to Google Sheets and all files uploaded to Google Drive.</p>
+                    <p style="color: var(--secondary-text);" class="mb-4">All data has been saved to Google Sheets and uploaded files are in Google Drive.</p>
                     
                     <div class="alert alert-success text-start">
                         <h6><i class="fas fa-check-circle me-2"></i>Data Saved To:</h6>
                         <ul class="mb-0">
-                            <li><strong>Google Sheets:</strong> All form data</li>
-                            <li><strong>Google Drive:</strong> Uploaded files (logo, banner, gallery, documents)</li>
-                            <li><strong>Admin Access:</strong> Available from any device</li>
+                            <li><strong>Google Sheets:</strong> All 9 sections of form data</li>
+                            <li><strong>Google Drive:</strong> All uploaded files (logo, banner, gallery, documents)</li>
+                            <li><strong>Admin Access:</strong> Available from any device via shared links</li>
                         </ul>
                     </div>
                     
                     <div class="mt-4">
-                        <button type="button" class="btn btn-success me-2" onclick="openGoogleSheets()">
-                            <i class="fas fa-table me-2"></i>View in Google Sheets
-                        </button>
-                        <button type="button" class="btn btn-outline-success" onclick="openGoogleDrive()">
-                            <i class="fas fa-folder me-2"></i>View in Google Drive
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                            <i class="fas fa-check me-2"></i>Close
                         </button>
                     </div>
                 </div>
@@ -638,344 +883,50 @@
         </div>
     </div>
 
+    <!-- Admin Button -->
+    <button type="button" class="admin-btn" onclick="showAdminInfo()" style="position: fixed; bottom: 30px; right: 30px; background: #495057; color: white; border: none; border-radius: 50px; padding: 15px 25px; z-index: 100;">
+        <i class="fas fa-user-shield me-2"></i>Admin Access
+    </button>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
-        // ============================================
-        // GOOGLE APPS SCRIPT WEB APP SETUP
-        // ============================================
-        // AFTER DEPLOYING YOUR SCRIPT, REPLACE THIS URL:
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYOUR_DEPLOYED_SCRIPT_ID/exec';
-        
-        // ============================================
-        // FILE UPLOAD SYSTEM
-        // ============================================
-        let uploadedFiles = {
-            logo: null,
-            banner: null,
-            gallery: [],
-            documents: []
-        };
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            setupFormValidation();
-            setupProgressTracking();
-            setupFileUploads();
-            
-            // Update form action with script URL
-            document.getElementById('schoolRegistrationForm').action = GOOGLE_SCRIPT_URL;
-            
-            document.getElementById('schoolRegistrationForm').addEventListener('submit', submitToGoogleScript);
-        });
-        
-        function setupFormValidation() {
-            const form = document.getElementById('schoolRegistrationForm');
-            form.addEventListener('submit', function(event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        }
-        
-        function setupProgressTracking() {
-            const form = document.getElementById('schoolRegistrationForm');
-            const progressBar = document.getElementById('formProgress');
-            const sections = form.querySelectorAll('.form-card');
-            const totalSections = sections.length;
-            
-            function updateProgress() {
-                let filledSections = 0;
-                sections.forEach(section => {
-                    const inputs = section.querySelectorAll('input[required], select[required], textarea[required]');
-                    let sectionFilled = true;
-                    inputs.forEach(input => {
-                        if (!input.value.trim()) sectionFilled = false;
-                    });
-                    if (sectionFilled) filledSections++;
-                });
-                const progress = (filledSections / totalSections) * 100;
-                progressBar.style.width = `${progress}%`;
-            }
-            
-            form.addEventListener('input', updateProgress);
-            form.addEventListener('change', updateProgress);
-            updateProgress();
-        }
-        
-        function setupFileUploads() {
-            setupUploadArea('logoUploadArea', 'logoFile', 'logo');
-            setupUploadArea('bannerUploadArea', 'bannerFile', 'banner');
-            setupUploadArea('galleryUploadArea', 'galleryFiles', 'gallery');
-            setupUploadArea('documentsUploadArea', 'documentFiles', 'documents');
-        }
-        
-        function setupUploadArea(areaId, fileInputId, type) {
-            const area = document.getElementById(areaId);
-            const fileInput = document.getElementById(fileInputId);
-            
-            area.addEventListener('click', () => fileInput.click());
-            fileInput.addEventListener('change', (e) => handleFileUpload(e, type));
-            
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                area.addEventListener(eventName, preventDefaults, false);
-            });
-            
-            ['dragenter', 'dragover'].forEach(eventName => {
-                area.addEventListener(eventName, () => area.classList.add('drag-over'), false);
-            });
-            
-            ['dragleave', 'drop'].forEach(eventName => {
-                area.addEventListener(eventName, () => area.classList.remove('drag-over'), false);
-            });
-            
-            area.addEventListener('drop', (e) => {
-                const files = e.dataTransfer.files;
-                if (type === 'gallery' || type === 'documents') {
-                    fileInput.files = files;
-                    handleFileUpload({ target: fileInput }, type);
-                } else {
-                    fileInput.files = files;
-                    handleFileUpload({ target: fileInput }, type);
-                }
-            }, false);
-        }
-        
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        
-        function handleFileUpload(event, type) {
-            const files = event.target.files;
-            if (!files || files.length === 0) return;
-            
-            for (let file of files) {
-                if (!validateFile(file, type)) {
-                    Toastify({
-                        text: `Invalid file: ${file.name}. Please check file requirements.`,
-                        duration: 4000,
-                        gravity: "bottom",
-                        position: "right",
-                        backgroundColor: "#dc3545",
-                        className: "toast-error"
-                    }).showToast();
-                    return;
-                }
-            }
-            
-            if (type === 'logo' || type === 'banner') {
-                const file = files[0];
-                uploadFile(file, type);
-            } else if (type === 'gallery') {
-                for (let file of files) {
-                    if (uploadedFiles.gallery.length >= 10) {
-                        Toastify({
-                            text: "Maximum 10 gallery images allowed",
-                            duration: 3000,
-                            gravity: "bottom",
-                            position: "right",
-                            backgroundColor: "#6c757d",
-                            className: "toast-dark"
-                        }).showToast();
-                        break;
-                    }
-                    uploadFile(file, type);
-                }
-            } else if (type === 'documents') {
-                for (let file of files) {
-                    uploadFile(file, type);
-                }
-            }
-        }
-        
-        function validateFile(file, type) {
-            const maxSize = {
-                logo: 5 * 1024 * 1024,
-                banner: 10 * 1024 * 1024,
-                gallery: 5 * 1024 * 1024,
-                documents: 10 * 1024 * 1024
-            };
-            
-            const allowedTypes = {
-                logo: ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml', 'image/gif'],
-                banner: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
-                gallery: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
-                documents: ['application/pdf']
-            };
-            
-            if (file.size > maxSize[type]) return false;
-            if (!allowedTypes[type].includes(file.type)) return false;
-            return true;
-        }
-        
-        function uploadFile(file, type) {
-            showUploadProgress(file, type);
-            setTimeout(() => {
+        // File preview for logo
+        document.getElementById('logoFile').addEventListener('change', function(e) {
+            const preview = document.getElementById('logoPreviewContainer');
+            if (this.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const fileData = {
-                        name: file.name,
-                        type: file.type,
-                        size: file.size,
-                        data: e.target.result,
-                        uploaded: new Date().toISOString()
-                    };
-                    
-                    if (type === 'logo') {
-                        uploadedFiles.logo = fileData;
-                        displayFilePreview(fileData, 'logo');
-                    } else if (type === 'banner') {
-                        uploadedFiles.banner = fileData;
-                        displayFilePreview(fileData, 'banner');
-                    } else if (type === 'gallery') {
-                        uploadedFiles.gallery.push(fileData);
-                        displayGalleryPreview();
-                    } else if (type === 'documents') {
-                        uploadedFiles.documents.push(fileData);
-                        displayDocumentsPreview();
-                    }
-                    
-                    if (type === 'gallery') updateGalleryCounter();
-                    
-                    Toastify({
-                        text: `${file.name} ready for upload`,
-                        duration: 3000,
-                        gravity: "bottom",
-                        position: "right",
-                        backgroundColor: "#28a745",
-                        className: "toast-success"
-                    }).showToast();
-                };
-                reader.readAsDataURL(file);
-            }, 500);
-        }
-        
-        function showUploadProgress(file, type) {
-            const containerId = type === 'logo' ? 'logoPreviewContainer' : 
-                              type === 'banner' ? 'bannerPreviewContainer' : 
-                              type === 'gallery' ? 'galleryPreview' : 
-                              'documentsPreviewContainer';
-            
-            const container = document.getElementById(containerId);
-            const progressId = `progress-${type}-${Date.now()}`;
-            
-            const progressHTML = `
-                <div class="file-preview" id="${progressId}">
-                    <div class="file-info">
-                        <div>
-                            <div class="file-name" style="color: var(--primary-text);">${file.name}</div>
-                            <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(file.size)}</div>
+                    preview.innerHTML = `
+                        <div class="file-preview">
+                            <img src="${e.target.result}" alt="Logo Preview" class="file-preview-image">
+                            <div class="file-info">
+                                <div>
+                                    <div class="file-name">${document.getElementById('logoFile').files[0].name}</div>
+                                    <div class="file-size">${formatFileSize(document.getElementById('logoFile').files[0].size)}</div>
+                                </div>
+                                <div><span class="badge bg-success">Ready for Google Drive</span></div>
+                            </div>
                         </div>
-                        <div>Processing...</div>
-                    </div>
-                    <div class="upload-progress">
-                        <div class="upload-progress-bar" style="width: 0%"></div>
-                    </div>
-                </div>
-            `;
-            
-            if (type === 'logo' || type === 'banner') {
-                container.innerHTML = progressHTML;
-            } else {
-                container.insertAdjacentHTML('beforeend', progressHTML);
-            }
-            
-            const progressBar = document.querySelector(`#${progressId} .upload-progress-bar`);
-            let width = 0;
-            const interval = setInterval(() => {
-                if (width >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        const element = document.getElementById(progressId);
-                        if (element) element.remove();
-                    }, 500);
-                } else {
-                    width += 10;
-                    progressBar.style.width = width + '%';
+                    `;
                 }
-            }, 100);
-        }
-        
-        function displayFilePreview(fileData, type) {
-            const containerId = type === 'logo' ? 'logoPreviewContainer' : 'bannerPreviewContainer';
-            const container = document.getElementById(containerId);
-            
-            let previewHTML = '';
-            if (fileData.type.startsWith('image/')) {
-                previewHTML = `
-                    <div class="file-preview">
-                        <img src="${fileData.data}" alt="${fileData.name}" class="file-preview-image">
-                        <div class="file-info">
-                            <div>
-                                <div class="file-name" style="color: var(--primary-text);">${fileData.name}</div>
-                                <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(fileData.size)}</div>
-                            </div>
-                            <div><span class="badge bg-success">Ready for Google Drive</span></div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                previewHTML = `
-                    <div class="file-preview">
-                        <div class="file-info">
-                            <div>
-                                <div class="file-name" style="color: var(--primary-text);">${fileData.name}</div>
-                                <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(fileData.size)}</div>
-                            </div>
-                            <div><span class="badge bg-success">Ready for Google Drive</span></div>
-                        </div>
-                    </div>
-                `;
+                reader.readAsDataURL(this.files[0]);
             }
+        });
+
+        // Form submission handler
+        document.getElementById('schoolRegistrationForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Saving to Google Sheets & Drive...';
+            submitBtn.disabled = true;
             
-            container.innerHTML = previewHTML;
-        }
-        
-        function displayGalleryPreview() {
-            const container = document.getElementById('galleryPreview');
-            container.innerHTML = '';
-            
-            uploadedFiles.gallery.forEach((file, index) => {
-                const itemHTML = `
-                    <div class="gallery-item" style="position: relative; width: 120px; height: 90px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color);">
-                        <img src="${file.data}" alt="${file.name}" class="gallery-image" style="width: 100%; height: 100%; object-fit: cover;">
-                        <div class="badge bg-success" style="position: absolute; top: 5px; left: 5px; font-size: 0.7rem;">Drive</div>
-                    </div>
-                `;
-                container.insertAdjacentHTML('beforeend', itemHTML);
-            });
-            
-            updateGalleryCounter();
-        }
-        
-        function displayDocumentsPreview() {
-            const container = document.getElementById('documentsPreviewContainer');
-            container.innerHTML = '';
-            
-            uploadedFiles.documents.forEach((file, index) => {
-                const previewHTML = `
-                    <div class="file-preview">
-                        <div class="file-info">
-                            <div>
-                                <div class="file-name" style="color: var(--primary-text);"><i class="fas fa-file-pdf me-2"></i>${file.name}</div>
-                                <div class="file-size" style="color: var(--secondary-text);">${formatFileSize(file.size)}</div>
-                            </div>
-                            <div><span class="badge bg-success">Ready for Google Drive</span></div>
-                        </div>
-                    </div>
-                `;
-                container.insertAdjacentHTML('beforeend', previewHTML);
-            });
-        }
-        
-        function updateGalleryCounter() {
-            const counter = document.getElementById('galleryCounter');
-            counter.textContent = `${uploadedFiles.gallery.length} images ready for Google Drive (Max 10)`;
-        }
-        
+            // Form will submit to Google Apps Script
+            // The script will handle the response
+        });
+
+        // Format file size
         function formatFileSize(bytes) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
@@ -983,154 +934,42 @@
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
-        
-        // ============================================
-        // SUBMISSION TO GOOGLE APPS SCRIPT
-        // ============================================
-        
-        async function submitToGoogleScript(event) {
-            event.preventDefault();
-            
+
+        // Show admin info
+        function showAdminInfo() {
+            alert('Admin Access Information:\n\n1. Google Sheets Link: Share the Google Sheets link with admins\n2. Google Drive Link: Share the "School Registrations" folder link\n3. No login required - Access via shared Google links\n4. Admins can view from any device with the links');
+        }
+
+        // Progress bar
+        function updateProgressBar() {
             const form = document.getElementById('schoolRegistrationForm');
-            if (!form.checkValidity()) {
-                form.classList.add('was-validated');
-                return;
-            }
-
-            if (!uploadedFiles.logo) {
-                Toastify({
-                    text: "Please upload a school logo",
-                    duration: 3000,
-                    gravity: "bottom",
-                    position: "right",
-                    backgroundColor: "#dc3545",
-                    className: "toast-error"
-                }).showToast();
-                return;
-            }
-
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Saving to Google Drive...';
-            submitBtn.disabled = true;
-
-            try {
-                // 1. Collect all form data
-                const formData = new FormData(form);
-                
-                // 2. Add file data to FormData
-                if (uploadedFiles.logo) {
-                    const logoBlob = dataURLtoBlob(uploadedFiles.logo.data);
-                    formData.append('logoFile', logoBlob, uploadedFiles.logo.name);
+            const requiredFields = form.querySelectorAll('[required]');
+            let filled = 0;
+            
+            requiredFields.forEach(field => {
+                if (field.type === 'checkbox') {
+                    if (field.checked) filled++;
+                } else if (field.value.trim() !== '') {
+                    filled++;
                 }
-                
-                if (uploadedFiles.banner) {
-                    const bannerBlob = dataURLtoBlob(uploadedFiles.banner.data);
-                    formData.append('bannerFile', bannerBlob, uploadedFiles.banner.name);
-                }
-                
-                // Add gallery files
-                uploadedFiles.gallery.forEach((file, index) => {
-                    const blob = dataURLtoBlob(file.data);
-                    formData.append(`galleryFile_${index}`, blob, file.name);
-                });
-                
-                // Add document files
-                uploadedFiles.documents.forEach((file, index) => {
-                    const blob = dataURLtoBlob(file.data);
-                    formData.append(`documentFile_${index}`, blob, file.name);
-                });
-                
-                // 3. Send to Google Apps Script
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.text();
-                
-                if (result.includes('Success')) {
-                    // Show success modal
-                    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                    successModal.show();
-                    
-                    // Reset form
-                    form.reset();
-                    form.classList.remove('was-validated');
-                    uploadedFiles = { logo: null, banner: null, gallery: [], documents: [] };
-                    document.getElementById('logoPreviewContainer').innerHTML = '';
-                    document.getElementById('bannerPreviewContainer').innerHTML = '';
-                    document.getElementById('galleryPreview').innerHTML = '';
-                    document.getElementById('documentsPreviewContainer').innerHTML = '';
-                    document.getElementById('galleryCounter').textContent = '0 images selected';
-                    document.getElementById('formProgress').style.width = '0%';
-                    
-                    Toastify({
-                        text: "Registration saved to Google Drive & Sheets!",
-                        duration: 5000,
-                        gravity: "bottom",
-                        position: "right",
-                        backgroundColor: "#28a745",
-                        className: "toast-success"
-                    }).showToast();
-                } else {
-                    throw new Error('Google Script error');
-                }
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                Toastify({
-                    text: "Error saving data. Please try again.",
-                    duration: 4000,
-                    gravity: "bottom",
-                    position: "right",
-                    backgroundColor: "#dc3545",
-                    className: "toast-error"
-                }).showToast();
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
+            });
+            
+            const progress = (filled / requiredFields.length) * 100;
+            document.getElementById('formProgress').style.width = progress + '%';
         }
-        
-        function dataURLtoBlob(dataURL) {
-            const arr = dataURL.split(',');
-            const mime = arr[0].match(/:(.*?);/)[1];
-            const bstr = atob(arr[1]);
-            let n = bstr.length;
-            const u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
-            }
-            return new Blob([u8arr], { type: mime });
-        }
-        
-        // ============================================
-        // ADMIN PANEL FUNCTIONS
-        // ============================================
-        
-        function openAdminPanel() {
-            document.getElementById('adminLoginOverlay').style.display = 'block';
-        }
-        
-        function closeAdminPanel() {
-            document.getElementById('adminLoginOverlay').style.display = 'none';
-        }
-        
-        function openGoogleSheets() {
-            // Replace with your Google Sheets URL
-            window.open('https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit', '_blank');
-        }
-        
-        function openGoogleDrive() {
-            // Replace with your Google Drive folder URL
-            window.open('https://drive.google.com/drive/folders/YOUR_FOLDER_ID', '_blank');
-        }
-        
-        // Close admin panel when clicking outside
-        document.getElementById('adminLoginOverlay').addEventListener('click', function(e) {
-            if (e.target.id === 'adminLoginOverlay') {
-                closeAdminPanel();
+
+        // Update progress on input
+        document.querySelectorAll('#schoolRegistrationForm input, #schoolRegistrationForm select, #schoolRegistrationForm textarea').forEach(element => {
+            element.addEventListener('input', updateProgressBar);
+            element.addEventListener('change', updateProgressBar);
+        });
+
+        // Check for success on page load
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('submit') === 'Success') {
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
             }
         });
     </script>
