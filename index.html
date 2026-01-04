@@ -347,59 +347,76 @@
                         </div>
                         
                         <div class="requirements-box mb-4">
-                            <h6><i class="fas fa-info-circle me-2"></i>Upload Requirements</h6>
+                            <h6><i class="fas fa-cloud-upload-alt me-2"></i>File Upload Information</h6>
                             <ul>
-                                <li><strong>All files are saved to Google Drive for admin access</strong></li>
-                                <li>Logo: PNG, JPG, or SVG format (Max 5MB)</li>
-                                <li>Banner: JPG or PNG format (Max 10MB)</li>
-                                <li>Gallery Images: Up to 10 images (Max 5MB each)</li>
-                                <li>Documents: PDF format only (Max 10MB each)</li>
+                                <li><strong>All files are uploaded to Google Drive</strong></li>
+                                <li>Files are organized in folders: Logos, Banners, Gallery, Documents</li>
+                                <li>Admins can access all files from any device</li>
                             </ul>
                         </div>
                         
+                        <!-- Logo Upload with Preview -->
                         <div class="mb-4">
                             <label class="form-label required">School Logo</label>
-                            <p style="color: var(--secondary-text);" class="mb-3">Upload your school's official logo. This will be saved to Google Drive.</p>
+                            <p style="color: var(--secondary-text);" class="mb-3">Upload your school's official logo (required).</p>
                             
-                            <div class="upload-area" onclick="document.getElementById('logoFile').click();">
+                            <div class="upload-area" id="logoUploadArea">
                                 <div class="upload-icon">
                                     <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--secondary-text); margin-bottom: 15px;"></i>
                                 </div>
                                 <h5>Upload School Logo</h5>
-                                <p style="color: var(--secondary-text);">Click to browse or drag & drop</p>
-                                <p style="color: var(--secondary-text);" class="small">Files are saved to Google Drive</p>
-                                <input type="file" id="logoFile" name="logoFile" accept=".png,.jpg,.jpeg,.svg,.gif" class="d-none" required>
+                                <p style="color: var(--secondary-text);">Drag & drop your logo here or click to browse</p>
+                                <p style="color: var(--secondary-text);" class="small">PNG, JPG, or SVG (Max 5MB)</p>
+                                <input type="file" id="logoFile" name="logoFile" accept=".png,.jpg,.jpeg,.svg" class="d-none" required>
                             </div>
                             
-                            <div class="file-preview-container mt-3" id="logoPreviewContainer"></div>
+                            <div class="mt-3" id="logoPreview">
+                                <!-- Preview will appear here -->
+                            </div>
                         </div>
                         
+                        <!-- Banner Upload -->
                         <div class="mb-4">
                             <label class="form-label">School Banner/Header Image</label>
-                            <p style="color: var(--secondary-text);" class="mb-3">Upload a banner image for your school portal header (optional).</p>
-                            <input type="file" class="form-control" name="bannerFile" accept=".png,.jpg,.jpeg,.gif">
+                            <div class="upload-area" id="bannerUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-image" style="font-size: 2rem; color: var(--secondary-text); margin-bottom: 10px;"></i>
+                                </div>
+                                <p style="color: var(--secondary-text);" class="mb-2">Click to upload banner image</p>
+                                <p style="color: var(--secondary-text);" class="small">JPG or PNG (Max 10MB)</p>
+                                <input type="file" id="bannerFile" name="bannerFile" accept=".png,.jpg,.jpeg" class="d-none">
+                            </div>
+                            <div class="mt-2" id="bannerPreview"></div>
                         </div>
                         
+                        <!-- Gallery Images -->
                         <div class="mb-4">
                             <label class="form-label">School Gallery Images</label>
-                            <p style="color: var(--secondary-text);" class="mb-3">Upload up to 10 images showcasing your school facilities, classrooms, events, etc.</p>
-                            <input type="file" class="form-control" name="galleryFiles" accept=".png,.jpg,.jpeg,.gif" multiple>
-                            <div class="form-text" style="color: var(--secondary-text);">You can select multiple images (Max 5MB each)</div>
+                            <div class="upload-area" id="galleryUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-images" style="font-size: 2rem; color: var(--secondary-text); margin-bottom: 10px;"></i>
+                                </div>
+                                <p style="color: var(--secondary-text);" class="mb-2">Click to upload gallery images</p>
+                                <p style="color: var(--secondary-text);" class="small">You can select multiple images (Max 5MB each)</p>
+                                <input type="file" id="galleryFiles" name="galleryFiles" accept=".png,.jpg,.jpeg" multiple class="d-none">
+                            </div>
+                            <div class="mt-2" id="galleryPreview"></div>
+                            <div class="form-text" style="color: var(--secondary-text);" id="galleryCounter">No images selected</div>
                         </div>
                         
+                        <!-- Documents -->
                         <div class="mb-4">
                             <label class="form-label">School Documents</label>
-                            <p style="color: var(--secondary-text);" class="mb-3">Upload important school documents (registration certificates, licenses, etc.)</p>
-                            <input type="file" class="form-control" name="documentFiles" accept=".pdf" multiple>
-                            <div class="form-text" style="color: var(--secondary-text);">PDF format only (Max 10MB each)</div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label class="form-label">Virtual Tour Link</label>
-                                <input type="url" class="form-control" name="virtualTourLink" placeholder="https://example.com/virtual-tour">
-                                <div class="form-text" style="color: var(--secondary-text);">Link to a virtual tour of your school (YouTube, Google Street View, etc.)</div>
+                            <div class="upload-area" id="documentsUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-file-pdf" style="font-size: 2rem; color: var(--secondary-text); margin-bottom: 10px;"></i>
+                                </div>
+                                <p style="color: var(--secondary-text);" class="mb-2">Click to upload documents</p>
+                                <p style="color: var(--secondary-text);" class="small">PDF format only (Max 10MB each)</p>
+                                <input type="file" id="documentFiles" name="documentFiles" accept=".pdf" multiple class="d-none">
                             </div>
+                            <div class="mt-2" id="documentsPreview"></div>
+                            <div class="form-text" style="color: var(--secondary-text);" id="documentsCounter">No documents selected</div>
                         </div>
                     </div>
                     
@@ -972,7 +989,191 @@
                 successModal.show();
             }
         });
+
+        // File Upload Handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            setupFileUpload('logoUploadArea', 'logoFile', 'logoPreview', 'logo');
+            setupFileUpload('bannerUploadArea', 'bannerFile', 'bannerPreview', 'banner');
+            setupFileUpload('galleryUploadArea', 'galleryFiles', 'galleryPreview', 'gallery', true);
+            setupFileUpload('documentsUploadArea', 'documentFiles', 'documentsPreview', 'documents', true);
+            
+            // Form submission handler
+            document.getElementById('schoolRegistrationForm').addEventListener('submit', handleFormSubmit);
+        });
+        
+        function setupFileUpload(areaId, fileInputId, previewId, type, multiple = false) {
+            const area = document.getElementById(areaId);
+            const fileInput = document.getElementById(fileInputId);
+            const preview = document.getElementById(previewId);
+            
+            // Click to select files
+            area.addEventListener('click', () => fileInput.click());
+            
+            // Handle file selection
+            fileInput.addEventListener('change', (e) => handleFileSelect(e, preview, type, multiple));
+            
+            // Drag and drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                area.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                area.addEventListener(eventName, () => area.classList.add('drag-over'), false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                area.addEventListener(eventName, () => area.classList.remove('drag-over'), false);
+            });
+            
+            area.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                fileInput.files = files;
+                handleFileSelect({ target: fileInput }, preview, type, multiple);
+            });
+        }
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        function handleFileSelect(event, previewElement, type, multiple) {
+            const files = event.target.files;
+            
+            if (!files || files.length === 0) return;
+            
+            previewElement.innerHTML = '';
+            
+            if (multiple) {
+                // Handle multiple files
+                const fileList = document.createElement('div');
+                fileList.className = 'file-list';
+                
+                for (let file of files) {
+                    const fileItem = createFileItem(file, type);
+                    fileList.appendChild(fileItem);
+                }
+                
+                previewElement.appendChild(fileList);
+                
+                // Update counters
+                if (type === 'gallery') {
+                    document.getElementById('galleryCounter').textContent = 
+                        `${files.length} image${files.length !== 1 ? 's' : ''} selected`;
+                } else if (type === 'documents') {
+                    document.getElementById('documentsCounter').textContent = 
+                        `${files.length} document${files.length !== 1 ? 's' : ''} selected`;
+                }
+            } else {
+                // Handle single file
+                const file = files[0];
+                const fileItem = createFileItem(file, type);
+                previewElement.appendChild(fileItem);
+            }
+        }
+        
+        function createFileItem(file, type) {
+            const div = document.createElement('div');
+            div.className = 'file-preview-item mb-2 p-2 border rounded';
+            
+            const fileSize = formatFileSize(file.size);
+            const isImage = file.type.startsWith('image/');
+            
+            let content = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>${file.name}</strong>
+                        <div class="text-muted small">${fileSize}</div>
+                    </div>
+                    <div>
+                        <span class="badge bg-info">${type.toUpperCase()}</span>
+                    </div>
+                </div>
+            `;
+            
+            if (isImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgDiv = document.createElement('div');
+                    imgDiv.className = 'mt-2';
+                    imgDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" 
+                             class="img-thumbnail" style="max-height: 100px;">
+                    `;
+                    div.appendChild(imgDiv);
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            div.innerHTML = content;
+            return div;
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('schoolRegistrationForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Validate required files
+            const logoFile = document.getElementById('logoFile').files[0];
+            if (!logoFile) {
+                alert('Please upload a school logo');
+                return;
+            }
+            
+            // Show uploading status
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Uploading to Google Drive...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Create FormData
+                const formData = new FormData(form);
+                
+                // Add all text fields
+                const textFields = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="url"], select, textarea');
+                textFields.forEach(field => {
+                    if (field.name && field.value) {
+                        formData.append(field.name, field.value);
+                    }
+                });
+                
+                // Add checkboxes
+                const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    formData.append(checkbox.name, checkbox.checked ? 'Yes' : 'No');
+                });
+                
+                // Submit to Google Apps Script
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // Required for Google Apps Script
+                });
+                
+                // Show success (redirect will happen via script)
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+                
+            } catch (error) {
+                console.error('Upload error:', error);
+                alert('Upload failed. Please try again.');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        }
     </script>
 </body>
 </html>
+
 
